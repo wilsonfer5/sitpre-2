@@ -289,6 +289,7 @@
         </div>
         <!-- /top navigation -->
 
+
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -302,12 +303,40 @@
                 </div>
               </div>
             </div>
-
+               
             
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
+
+                <!-- tabla lista de materias --> 
+           <div class="x_content">
+             <table id="bootstrap-data-table" class="table table-striped table-bordered">
+               <thead>
+                 <tr>
+                   <th>Codigo</th>
+                   <th>Nombre</th>
+                   <!--th>Docente</th-->
+                   <th>Acción</th>
+                 </tr>
+             </thead>
+             <tbody>
+               @foreach ($listado as $fila)
+               <tr>
+                <td>{{$fila->code}}</td>
+                <td>{{$fila->name}}</td>
+                <!--td>{{$fila->user_id}}</td-->
+                <td><a href="{{url("nota_materia/$fila->id")}}" class="btn btn-xs btn-danger fa fa-eye" data-toggle="tooltip" data-placement="top" title="Ver Detalle"></a></td>
+               </tr>
+               @endforeach
+             </tbody>
+             </table>
+           </div>
+
+
+
+        <!-- tabla lista de materias -->
                 
                     <h3 align="center" >Sistema de información para el manejo de terceros previos-
                     <strong>SITPRE</strong></h3>
@@ -337,7 +366,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            UFPS - Universidad Fransisco de Paula Santander <i class="fa fa-copyright" aria-hidden="true">2019</i>
+            UFPS - Universidad Fransisco de Paula Santander <i class="fa fa-copyright" aria-hidden="true"> <?php  echo date('Y')  ?>  </i>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -362,7 +391,11 @@
   <script>
     $('div.flash-message').delay(10000).slideUp(300);
 	</script>
-
+<script type="text/javascript">
+      $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    </script>
 
   </body>
 </html>

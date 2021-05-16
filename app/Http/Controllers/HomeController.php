@@ -55,4 +55,9 @@ class HomeController extends Controller
        
      
     }
+
+    public function prueba()
+    {
+        return view('index');
+    }
 }

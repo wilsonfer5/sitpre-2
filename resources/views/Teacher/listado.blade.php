@@ -307,7 +307,7 @@
                     <table id="tabla_de_miembros" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th><a > Id</a>  </th>
+                          <!--th><a > Id</a>  </th-->
                           <th><a> Codigo Materia</a> </th>
 		                      <th><a> Nombre</a> </th>
                           <th><a> Url Drive</a> </th>
@@ -320,17 +320,28 @@
                @foreach($listado as $fila)
 
                 <tr>
-                       <td>{{ $fila->id  }}</td>
+                       <!--td>{{ $fila->id  }}</td-->
                        <td>{{ $fila->code }}</td>
                        <td>{{ $fila->name }}</td>
-                       <td><a href={{ $fila->url_drive }} target="_blank">{{ $fila->url_drive }}</a></td>
-                       <td><button class="btn btn-xs btn-danger" data-name="{{$fila->name}}" data-code="{{$fila->code}}" 
-                       data-url_drive="{{$fila->url_drive}}" data-id_materia="{{$fila->id}}" data-toggle="modal" data-target="#edit">
+                       <td><a href={{ $fila->url_drive }} target="_blank">URL</a></td>
+                       <td> 
+                        <!-- Editar -->
+                        <button class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Editar Materia" data-name="{{$fila->name}}" data-code="{{$fila->code}}"data-url_drive="{{$fila->url_drive}}" data-id_materia="{{$fila->id}}" data-toggle="modal" data-target="#edit">
                        <i class="fa fa-edit" aria-hidden="true"></i>
                        </button>
-                       <a href="{{url("eliminar_materia/$fila->id")}}" onclick="return confirm('Esta seguro de eliminar la materia?')" class="btn btn-xs btn-danger" >
+                        <!-- revisar -->
+                       <a href=""  class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Detalle Materia" >
+                       <i class="fa fa-eye" aria-hidden="true"></i>
+                       </a>
+                        <!-- Eliminar -->
+                       <a href="{{url("eliminar_materia/$fila->id")}}" onclick="return confirm('¿Esta seguro de eliminar la materia?')" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar Materia" >
                        <i class="fa fa-trash" aria-hidden="true"></i>
                        </a>
+                        <!-- Notificar -->
+                        <a href="" onclick="return confirm('¿Esta seguro de notificar a los Estudiantes de la materia la carga sus  notas?')" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Notificar Estudiantes">
+                       <i class="fa fa-mail-reply-all" aria-hidden="true"></i>
+                       </a>
+
 									     
                 </tr>
                 @endforeach
@@ -440,5 +451,11 @@
 
  
 </script>
+
+<script type="text/javascript">
+      $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    </script>
   </body>
 </html>

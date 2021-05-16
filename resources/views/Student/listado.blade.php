@@ -321,15 +321,22 @@
                         <thead width="130px">
                       <th><a>ITEM</a></th>
                       <th><a>NOTA</a></th>
+                      <th><a>COMENTARIO</a></th>
                    @for ($i =4; $i<count($encabezado) ; $i++)
-     
-
+                    
                     </thead>
-
                       <tbody>
 
                       @if($encabezado[$i]!="")
-                          <td><strong>{{$encabezado[$i]}}</strong></td>
+                        
+                          <td>
+                        @foreach($observaciones as $fila)
+                        @if(!empty($encabezado[$i])&&stristr($fila,$encabezado[$i])==$fila)
+                            <strong class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="{{$fila}}"> {{$encabezado[$i]}}</strong>
+                          @endif
+                          @endforeach
+                          </td>
+                          
                       @else
                           <td><strong>Nota pendiente</strong></td>
                       @endif
@@ -340,11 +347,15 @@
                        <td>N/A</td>
                   @else
                       <td>{{ $fila[$encabezado[$i]]  }}</td>
-                @endif  
+                @endif 
+                      <td><a href=""class="btn btn-xs btn-danger"data-toggle="tooltip" data-placement="right" title="Realiza un comentario sobre la nota obsevada.">
+                        <li class="fa fa-location-arrow" aria-hidden="true"> Comentario </li></a></td> 
                
                 @endforeach
-                @endfor  
+                @endfor 
+
                 </tbody>
+
                     </table>
                     
                    <strong>OBSERVACIONES</strong> <br>
@@ -391,5 +402,11 @@
     
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+
+    <script type="text/javascript">
+      $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    </script>
   </body>
 </html>

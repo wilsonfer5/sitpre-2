@@ -147,7 +147,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            UFPS - Universidad Fransisco de Paula Santander <i class="fa fa-copyright" aria-hidden="true">2019</i>
+            UFPS - Universidad Fransisco de Paula Santander <i class="fa fa-copyright" aria-hidden="true"> <?php  echo date('Y')   ?> </i>
           </div>
           <div class="clearfix"></div>
         </footer>

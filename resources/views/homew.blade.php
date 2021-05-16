@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SITPRE - Manejo de terceros notas</title>
+    <title>SITPRE - Manejo de terceros previos</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -40,6 +40,7 @@
             <ul class="navbar-nav ml-auto">
                   <!-- Link-->
                   <li class="nav-item" > <a href="./" class="nav-link"  >HOME</a></li>
+                  <li class="nav-item" > <a href="index" class="nav-link"  >prueba</a></li>
 
                   <li class="nav-item"> <a href="https://divisist2.ufps.edu.co" target="_blank" class="nav-link">DIVISIST</a></li>
                   <li class="nav-item"> <a href="https://ww2.ufps.edu.co" target="_blank" class="nav-link" >INSTITUCIONAL</a></li>

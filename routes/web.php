@@ -57,4 +57,5 @@ Route::get('homew/{provider?}', 'Auth\LoginController@getSocialAuth');
 Route::get('homew/{provider?}/logout', 'Auth\LoginController@logout');
 Route::get('/homew/{provider?}/callback','Auth\LoginController@handleProviderCallback');
 
-        
+ // prueba para la nueva vista
+ Route::get('index', 'HomeController@prueba');    
