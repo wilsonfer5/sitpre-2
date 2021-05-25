@@ -24,11 +24,11 @@
   </head>
 
   <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
+    <!--div class="container body">
+      <!--div class="main_container">
+        <!--div class="col-md-3 left_col">
+          <!--div class="left_col scroll-view">
+            <!--div class="navbar nav_title" style="border: 0;">
             <a  href="/student">
             <img src="img/logo3.svg"  class="site_title">
             </a>
@@ -37,7 +37,7 @@
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-            <div class="profile clearfix">
+            <!--div class="profile clearfix">
               <div class="profile_pic">
                 <img src="{{ auth()->user()->avatar }}" alt="..." class="img-circle profile_img">
               </div>
@@ -49,16 +49,16 @@
             </div>
             <!-- /menu profile quick info -->
 
-            <br />
+            <!--br />
 
           <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <!--div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                
                 <ul class="nav side-menu">
               
-                <!--------------------------------A-D--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> A-D <span class="fa fa-chevron-down"></span></a>
+                <!--------------------------------A-D-------------------------------------   -->
+                <!--li><a><i class="fa  fa-bullseye"></i> A-D <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count = 0;
@@ -86,7 +86,7 @@
                   </li>
                 <!------------------------------------------------------------------------------->
                  <!--------------------------------E-H--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> E-H <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> E-H <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count1 = 0;
@@ -114,7 +114,7 @@
                   </li>
                 <!------------------------------------------------------------------------------->
                  <!--------------------------------I-L--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> I-L <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> I-L <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count2 = 0;
@@ -142,7 +142,7 @@
                   </li>
                 <!------------------------------------------------------------------------------->
                    <!--------------------------------M-O--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> M-O <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> M-O <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count3 = 0;
@@ -168,7 +168,7 @@
                   </li>
                 <!------------------------------------------------------------------------------->
                    <!--------------------------------P-S--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> P-S <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> P-S <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count4 = 0;
@@ -194,7 +194,7 @@
                 <!------------------------------------------------------------------------------->
 
                    <!--------------------------------T-W--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> T-W <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> T-W <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                  @php
                 $count5 = 0;
@@ -221,7 +221,7 @@
                 <!------------------------------------------------------------------------------->
 
                     <!--------------------------------X-Z--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> X-Z <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> X-Z <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count6 = 0;
@@ -244,7 +244,7 @@
                    </ul>
                   </li>
                 <!------------------------------------------------------------------------------->
-                 <li><a href="{{ url("video_student")}}"><i class="fa fa-youtube-play "></i>  Ayuda<span class="label label-danger pull-right">Tutorial</span></a></li>
+                 <!--li><a href="{{ url("video_student")}}"><i class="fa fa-youtube-play "></i>  Ayuda<span class="label label-danger pull-right">Tutorial</span></a></li>
                
                 </ul>
               </div>
@@ -259,11 +259,11 @@
               </a>
             </div>
             <!-- /menu footer buttons -->
-          </div>
-        </div>
+          <!--/div>
+        </div -->
 
         <!-- top navigation -->
-        <div class="top_nav">
+        <div class="profile clearfix" >
           <div class="nav_menu">
             <nav>
               <div class="nav toggle">
@@ -310,9 +310,23 @@
                 <div class="x_panel">
                   <div class="x_title">
 
-                <!-- tabla lista de materias --> 
+                
+                    <h3 align="center" ><strong> SITPRE - </strong>Sistema de información para el manejo de terceros previos -
+                    </h3>
+                     <!----------Mensaje de error------------------>
+              <div class="flash-message">
+                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                  @if(Session::has('alert-' . $msg))
+                  <p align="center" class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                  @endif
+                @endforeach
+               </div>
+             <!-------------------------------------------->
+                   
+
+  <!-- tabla lista de materias --> 
            <div class="x_content">
-             <table id="bootstrap-data-table" class="table table-striped table-bordered">
+             <table id="tabla_de_miembros" class="table table-striped table-bordered">
                <thead>
                  <tr>
                    <th>Codigo</th>
@@ -337,25 +351,16 @@
 
 
         <!-- tabla lista de materias -->
-                
-                    <h3 align="center" >Sistema de información para el manejo de terceros previos-
-                    <strong>SITPRE</strong></h3>
-                   
+
+
+
+
+
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
+                  <!--div class="x_content">
                       <img src="img/logo2.svg"  class="site_home">
-                 
-                 <!----------Mensaje de error------------------>
-              <div class="flash-message">
-                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                  @if(Session::has('alert-' . $msg))
-                  <p align="center" class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
-                  @endif
-                @endforeach
-               </div>
-             <!-------------------------------------------->
-                  </div>
+                  </div-->
                </div>
               </div>
             </div>
@@ -374,6 +379,8 @@
       </div>
     </div>
 
+
+    
     <!-- jQuery -->
     <script src="vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -387,10 +394,56 @@
     <script src="build/js/custom.min.js"></script>
 
 
+    <!-- Datatables -->
+    <script src="vendors/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="vendors/jszip/dist/jszip.min.js"></script>
+    <script src="vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
 
-  <script>
+<script language="javascript">
+    $('#tabla_de_miembros').DataTable({
+      info:false,
+      language: {
+        "decimal": "",
+        "emptyTable": "No hay información para mostrar",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Paginación _MENU_ ",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "No se encontraron resultados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+        
+        }
+
+    });
+
+    $('div.flash-message').delay(8000).slideUp(300);
+  </script>
+
+  <!--script>
     $('div.flash-message').delay(10000).slideUp(300);
-	</script>
+	</script-->
 <script type="text/javascript">
       $(function () {
   $('[data-toggle="tooltip"]').tooltip()

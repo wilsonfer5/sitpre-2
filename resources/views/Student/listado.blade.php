@@ -9,6 +9,8 @@
 
    <title>SITPRE - Manejo de terceros previos</title>
 
+
+
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS-->
@@ -21,10 +23,20 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.css" rel="stylesheet">
+
+    <style type="text/css">
+      table th {
+  text-align: center;
+}
+table td {
+  text-align: center;
+}
+
+    </style>
   </head>
 
   <body class="nav-md">
-    <div class="container body">
+    <!--div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
@@ -37,7 +49,7 @@
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-            <div class="profile clearfix">
+            <!--div class="profile clearfix">
               <div class="profile_pic">
                 <img src="{{ auth()->user()->avatar }}" alt="..." class="img-circle profile_img">
               </div>
@@ -49,17 +61,17 @@
             </div>
             <!-- /menu profile quick info -->
 
-            <br />
+            <!--br />
 
            
           <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <!--div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                
                 <ul class="nav side-menu">
               
                 <!--------------------------------A-D--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> A-D <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> A-D <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count = 0;
@@ -71,7 +83,7 @@
                 Str::startsWith($fila->name,'C')||Str::startsWith($fila->name,'c')||
                 Str::startsWith($fila->name,'D')||Str::startsWith($fila->name,'d'))
                 
-                <li><a href="{{url("nota_materia/$fila->id")}}">{{$fila->code}} {{$fila->name}}</a></li>
+                <!--li><a href="{{url("nota_materia/$fila->id")}}">{{$fila->code}} {{$fila->name}}</a></li>
                 @if($count == 4)
                 <li><a href="{{url("nota_materia_listado/1")}}">Ver mas...</i></a></li>
                 @endif
@@ -87,7 +99,7 @@
                   </li>
                 <!------------------------------------------------------------------------------->
                  <!--------------------------------E-H--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> E-H <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> E-H <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count1 = 0;
@@ -115,7 +127,7 @@
                   </li>
                 <!------------------------------------------------------------------------------->
                  <!--------------------------------I-L--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> I-L <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> I-L <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count2 = 0;
@@ -143,7 +155,7 @@
                   </li>
                 <!------------------------------------------------------------------------------->
                    <!--------------------------------M-O--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> M-O <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> M-O <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count3 = 0;
@@ -169,7 +181,7 @@
                   </li>
                 <!------------------------------------------------------------------------------->
                    <!--------------------------------P-S--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> P-S <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> P-S <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count4 = 0;
@@ -195,7 +207,7 @@
                 <!------------------------------------------------------------------------------->
 
                    <!--------------------------------T-W--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> T-W <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> T-W <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                  @php
                 $count5 = 0;
@@ -222,7 +234,7 @@
                 <!------------------------------------------------------------------------------->
 
                     <!--------------------------------X-Z--------------------------------------->
-                <li><a><i class="fa  fa-bullseye"></i> X-Z <span class="fa fa-chevron-down"></span></a>
+                <!--li><a><i class="fa  fa-bullseye"></i> X-Z <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                 @php
                 $count6 = 0;
@@ -245,7 +257,7 @@
                    </ul>
                   </li>
                 <!------------------------------------------------------------------------------->
-                 <li><a href="{{ url("video_student")}}"><i class="fa fa-youtube-play "></i>  Ayuda<span class="label label-danger pull-right">Tutorial</span></a></li>
+                 <!--li><a href="{{ url("video_student")}}"><i class="fa fa-youtube-play "></i>  Ayuda<span class="label label-danger pull-right">Tutorial</span></a></li>
                
                 </ul>
               </div>
@@ -254,7 +266,7 @@
   
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
+            <!--div class="sidebar-footer hidden-small">
               
               <a data-toggle="tooltip" data-placement="top" title="cerrar sesión" href="{{ url('homew/google/logout') }}" 
               style="width:100%;color:white">
@@ -262,8 +274,8 @@
               </a>
             </div>
             <!-- /menu footer buttons -->
-          </div>
-        </div>
+          <!--/div>
+        </div-->
 
         <!-- top navigation -->
         <div class="top_nav">
@@ -309,20 +321,63 @@
             
 
             
-            <div class="row">
+            <div class="row ">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                  
                 <h1 align="center">{{$nombre_materia}}</h1>
                 <h5 align="center"><strong>Prof.</strong> {{$nombre_docente}}</h5>
-                  <div class="x_content">
+              
+
+           <div class="container-fluid">
+                     <div class="container">
+            <div class="row responsive">
+
+              <div class="col-md-6 col-sm-6 col-xs-12" >
+                 <h1 align="center" style="font-size: 200px;">
+                  @foreach($listado2 as $fila)
+                   @if($fila[$encabezado[count($encabezado)-1]]=="")
+                   <strong>N/N</strong> 
+                   @elseif($fila[$encabezado[count($encabezado)-1]]>= "0" && $fila[$encabezado[count($encabezado)-1]] < "3")
+                   <strong style="color: red;"> {{$fila[$encabezado[count($encabezado)-1]]}}</strong> 
+                   @elseif($fila[$encabezado[count($encabezado)-1]]>="3" && $fila[$encabezado[count($encabezado)-1]]<"4,5")
+                   <strong style="color:#e8a010;"> {{$fila[$encabezado[count($encabezado)-1]]}}</strong> 
+                   @else
+                   <strong style="color: green;"> {{$fila[$encabezado[count($encabezado)-1]]}}</strong> 
+                   @endif
+                   <br>
+                   <h3 align="center" style="font-size: 50px;"> {{$encabezado[count($encabezado)-1]}} </h3> 
+                  @endforeach
+               </h1>
+                  
+              </div>
+                
+
+                <div class="col-md-6 col-sm-6 col-xs-12" >
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="singelBarChart" ></canvas>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+
+                </div>
+
+                </div>
+                </div> 
+
+
+
+                    <br>
+                  <!-- inicio tavbla Notas -->
+                  <div class="x_content table-responsive">
                  
-                    <table id="tabla_de_miembros" class="table table-striped table-bordered" style="width:50%" align="center">
+                    <table id="tabla_de_miembros"  class="table table-striped table-bordered table align-middle table table-hover " style="width:50%" align="center">
                         <thead width="130px">
-                      <th><a>ITEM</a></th>
-                      <th><a>NOTA</a></th>
-                      <th><a>COMENTARIO</a></th>
-                   @for ($i =4; $i<count($encabezado) ; $i++)
+                      <th style="text-align: center;" ><a>ITEM</a></th>
+                      <th align="center"><a>NOTA</a></th>
+                      <th align="center"><a>COMENTARIO</a></th>
+                   @for ($i =4; $i<count($encabezado)-1 ; $i++)
                     
                     </thead>
                       <tbody>
@@ -346,44 +401,122 @@
                 @if($fila[$encabezado[$i]]=="")
                        <td>N/A</td>
                   @else
-                      <td>{{ $fila[$encabezado[$i]]  }}</td>
-                @endif 
-                      <td><a href=""class="btn btn-xs btn-danger"data-toggle="tooltip" data-placement="right" title="Realiza un comentario sobre la nota obsevada.">
-                        <li class="fa fa-location-arrow" aria-hidden="true"> Comentario </li></a></td> 
-               
-                @endforeach
-                @endfor 
+                      @if($fila[$encabezado[$i]] >= "0" && $fila[$encabezado[$i]] < "3")
+                      <td style="color: red;" ><strong>{{ $fila[$encabezado[$i]]  }}</strong></td>
+                      @elseif($fila[$encabezado[$i]] >= "3" && $fila[$encabezado[$i]] <"4,5")
+                           <td style="color: #e8a010;" > <strong>{{ $fila[$encabezado[$i]]  }}</strong></td>
+                       @else    
+                      <td style="color: green;"><strong>{{ $fila[$encabezado[$i]]  }}</strong></td>
+                      @endif @endif 
+                      <td>
+                        <button class="btn btn-xs btn-danger" data-toggle="modal" data-placement="right" title="Realiza un comentario sobre la nota obsevada." data-placement="top" data-item="{{$encabezado[$i]}}" data-nota= "{{ $fila[$encabezado[$i]]  }}" data-mate="{{$nombre_materia}}" data-emailpro="{{$email_docente}}"data-profe="{{$nombre_docente}}" data-username="{{ auth()->user()->name }}"  data-useremail="{{ auth()->user()->email }}" data-userurl="{{request()->url()}}" title="Editar Materia" data-target="#comentario">
+                       <i class="fa fa-location-arrow" aria-hidden="true"> Comentario </i>
+                         </button>
+
+                    </td> 
+                @endforeach @endfor 
 
                 </tbody>
 
-                    </table>
-                    
+                    </table>   
+                    <!--               
                    <strong>OBSERVACIONES</strong> <br>
                    @for ($i =4; $i<count($encabezado) ; $i++)
                     @foreach($observaciones as $fila)
                     <!-----Se realiza la validacion para que las observaciones se llamen igual que las notas-->
-                    @if(!empty($encabezado[$i])&&stristr($fila,$encabezado[$i])==$fila)
+                   <!-- @if(!empty($encabezado[$i])&&stristr($fila,$encabezado[$i])==$fila)
                     {{strtoupper($fila)}} <br>
                     @endif
                      @endforeach
-                    @endfor  
+                    @endfor 
+                    -->  
                    </div>
+                   <!-- fin tabla notas -->
                 </div>
               </div>
-
-                
                 </div>
               </div>
             </div>
           </div>
         </div>
    
+
+   </div>
+
+<!----------Modal para editar las materias-------------->
+         
+
+
+<div class="modal fade" id="comentario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Enviar Comentario</h4>
+      </div>
+      
+       <form action="{{url('enviar_comentario')}}"  method="post" id="enviar_comentario"  class="formentrada"  >
+                
+        <div class="modal-body">
+            <div class="form-group">   
+            <div class="input-group ">
+              <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="profe">Profesor</label>
+              <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> 
+              <input type="text" size="100%" readonly="readonly" class="form-control" name="profe" id="profe"  required>
+              <input type="hidden" readonly="readonly" class="form-control" name="emailpro" id="emailpro"  required>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="materia">Materia</label>
+              <input type="text" size="100%" readonly="readonly" class="form-control" name="mate" id="mate"  required>
+                </div>
+            </div>
+                </div>
+        <div class="form-group ">
+          <div class="input-group ">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="item">Item</label>
+              <input type="text" size="100%" readonly="readonly" class="form-control " name="item" id="item"  required>
+              </div>
+              <div class=" col-lg-6 col-md-6 col-sm-6" >
+              <label for="nota">Nota</label>
+              <input type="text" size="100%" readonly="readonly" class="form-control " name="nota" id="nota"  required>
+                </div>
+            </div>
+          </div>
+
+              <div class="form-group">
+                <input type="hidden" class="form-control" name="username" id="username" > 
+                <input type="hidden" class="form-control" name="useremail" id="useremail" > 
+                <input type="hidden" class="form-control" name="userurl" id="userurl" > 
+              <label for="coment">Comentario</label>
+              <textarea  class="form-control " name="coment" id="coment" cols="25" rows="10"  required > </textarea>
+             
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger">Enviar Comentario</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+            <!--------------------------------->
+
+
+
+
+
+
+           </div>
+        </div>
         <!-- /page content -->
 
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            UFPS - Universidad Fransisco de Paula Santander <i class="fa fa-copyright" aria-hidden="true">2019</i>
+            UFPS - Universidad Fransisco de Paula Santander <i class="fa fa-copyright" aria-hidden="true"> <?php echo date('Y') ?> </i>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -391,6 +524,8 @@
       </div>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -403,10 +538,93 @@
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
+
+<script>
+  
+  $('#comentario').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+      var profe = button.data('profe')
+      var emailpro = button.data('emailpro') 
+      var mate = button.data('mate') 
+      var item = button.data('item') 
+      var nota = button.data('nota') 
+      var username = button.data('username') 
+      var useremail = button.data('useremail') 
+      var userurl = button.data('userurl') 
+      
+        
+      var modal = $(this)
+      modal.find('.modal-body #profe').val(profe);
+      modal.find('.modal-body #emailpro').val(emailpro);
+      modal.find('.modal-body #mate').val(mate);
+      modal.find('.modal-body #item').val(item);
+      modal.find('.modal-body #nota').val(nota);
+      modal.find('.modal-body #username').val(username);
+      modal.find('.modal-body #useremail').val(useremail);
+      modal.find('.modal-body #userurl').val(userurl);
+      
+     
+})
+
+ 
+</script>
+    
+    <script >
+      
+    var ctx = document.getElementById( "singelBarChart");
+    ctx.height = 150;
+    
+    var myChart = new Chart( ctx, {
+        type: 'bar',
+        data: {
+            labels: [ 
+
+              <?php for($i=4; $i< count($encabezado)-1;$i++){ ?>          
+               '<?php echo $encabezado[$i] ?>',
+               <?php } ?>                 
+            ],
+            datasets: [
+                {
+                    label: "Notas",
+                    data: [ 
+                <?php 
+                for($j=4; $j< count($encabezado)-1;$j++){
+                foreach($listado2 as $fila){    ?> 
+                   
+               '<?php echo str_replace(',', '.', $fila[$encabezado[$j]])?>',
+                <?php }} ?>
+                    ],
+                    borderColor: "rgba(0, 194, 146, 0.9)",
+                    borderWidth: "0",
+                    backgroundColor: "rgba(0, 194, 146, 0.5)"
+                            }
+                        ]
+        },
+        options: {
+            scales: {
+                yAxes: [ {
+                    ticks: {
+                        beginAtZero: true,
+                        precision: 0,
+                        fixedStepSize: 1
+                    }
+                                } ]
+            }
+        }
+    } );
+
+    </script >
+
     <script type="text/javascript">
       $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
     </script>
+ <script type="text/javascript">
+      $(function () {
+  $('[data-toggle="modal"]').tooltip()
+})
+    </script>
+    
   </body>
 </html>

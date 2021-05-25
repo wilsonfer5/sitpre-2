@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <!-- top navigation -->
+               <!-- top navigation -->
         <div class="top_nav">
           <div class="nav_menu">
             <nav>
@@ -91,9 +91,9 @@
               </div>
 
               <ul class="nav navbar-nav navbar-right">
+          
                 <li class="" >
-                  <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" 
-                  style="color:white;">
+                  <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:white;">
                     <img src="{{ auth()->user()->avatar }}" alt="">{{ auth()->user()->name }}
                     <span class=" fa fa-angle-down" style="color:white"></span>
                   </a>
@@ -103,6 +103,14 @@
                   </ul>
                 </li>
 
+                    <li class="">
+                  <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:white;">
+                    <i class="fa fa-book"></i> Materias <span class="fa fa-chevron-down"></span>
+                  </a>
+                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                      <li><a href="{{ url("listado_materias")}}">Administrar Materias </a></li>
+                     </ul>
+                  </li>
               </ul>
             </nav>
           </div>

@@ -91,7 +91,7 @@
           </div>
         </div>
 
-        <!-- top navigation -->
+       <!-- top navigation -->
         <div class="top_nav">
           <div class="nav_menu">
             <nav>
@@ -100,9 +100,9 @@
               </div>
 
               <ul class="nav navbar-nav navbar-right">
+          
                 <li class="" >
-                  <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" 
-                  style="color:white;">
+                  <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:white;">
                     <img src="{{ auth()->user()->avatar }}" alt="">{{ auth()->user()->name }}
                     <span class=" fa fa-angle-down" style="color:white"></span>
                   </a>
@@ -112,6 +112,14 @@
                   </ul>
                 </li>
 
+                    <li class="">
+                  <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:white;">
+                    <i class="fa fa-book"></i> Materias <span class="fa fa-chevron-down"></span>
+                  </a>
+                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                      <li><a href="{{ url("listado_materias")}}">Administrar Materias </a></li>
+                     </ul>
+                  </li>
               </ul>
             </nav>
           </div>
@@ -323,10 +331,10 @@
                        <!--td>{{ $fila->id  }}</td-->
                        <td>{{ $fila->code }}</td>
                        <td>{{ $fila->name }}</td>
-                       <td><a href={{ $fila->url_drive }} target="_blank">URL</a></td>
+                       <td><a href="{{ $fila->url_drive }}" target="_blank">URL</a></td>
                        <td> 
                         <!-- Editar -->
-                        <button class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Editar Materia" data-name="{{$fila->name}}" data-code="{{$fila->code}}"data-url_drive="{{$fila->url_drive}}" data-id_materia="{{$fila->id}}" data-toggle="modal" data-target="#edit">
+                        <button class="btn btn-xs btn-danger"  data-placement="top" title="Editar Materia" data-name="{{$fila->name}}" data-code="{{$fila->code}}"data-url_drive="{{$fila->url_drive}}" data-id_materia="{{$fila->id}}" data-toggle="modal" data-target="#edit">
                        <i class="fa fa-edit" aria-hidden="true"></i>
                        </button>
                         <!-- revisar -->
@@ -341,8 +349,6 @@
                         <a href="" onclick="return confirm('¿Esta seguro de notificar a los Estudiantes de la materia la carga sus  notas?')" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Notificar Estudiantes">
                        <i class="fa fa-mail-reply-all" aria-hidden="true"></i>
                        </a>
-
-									     
                 </tr>
                 @endforeach
             </tbody>

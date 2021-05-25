@@ -41,6 +41,9 @@ Route::get('/student', 'StudentController@listado_materias');
 Route::get('nota_materia/{id?}', 'StudentController@notas_materia');
 Route::get('nota_materia_listado/{id?}', 'StudentController@notas_materias_grupo');
 Route::get('video_student', 'StudentController@video_player');
+Route::post('enviar_comentario', 'StudentController@enviar_comentario');
+
+
 //Rutas para profesor
 Route::get('/teacher','TeacherController@index');
 Route::get('listado_materias/{filtro?}/{orden?}', 'TeacherController@listado_materias');
