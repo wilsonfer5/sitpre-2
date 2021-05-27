@@ -163,7 +163,7 @@
           <h2>Ventajas</h2>
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <p class="lead text-muted mt-2">Sistema de información para el manejo terceras notas.</p>
+              <p class="lead text-muted mt-2">Sistema de información para el manejo de terceros previos.</p>
             </div>
           </div>
         </div>
