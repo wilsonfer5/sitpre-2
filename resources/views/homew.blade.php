@@ -80,7 +80,7 @@
             <div class="form-group" align="Center">
               <h2>Bienvenido a <strong>SITPRE</strong></h2>
               <img src="img/logo2.svg" width="300" height="200" align="Center">
-              <h4>SISTEMA PARA EL MANEJO DE TERCEROS PREVIOS</h4>
+              <h4>SISTEMA PARA EL MANEJO DE LAS TERCERAS NOTAS</h4>
                 
               <a href="{{ url('homew/google') }}" class="btn btn-danger"><i class="fa fa-google-plus"></i> Iniciar Sesión con Google</a>
                </div>
