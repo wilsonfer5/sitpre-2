@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Mail;
-
+use App\Comentario
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -14,9 +14,9 @@ class EnviarComentario extends Mailable
 
     public $commentary;
 
-    public function __construct(Requests $request)
+    public function __construct(Comentario $comentario)
     {
-        $this->commentary = $request;
+        $this->commentary = $comentario;
     }
 
     public function build()

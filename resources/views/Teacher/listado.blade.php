@@ -337,8 +337,8 @@
                         <button class="btn btn-xs btn-danger"  data-placement="top" title="Editar Materia" data-name="{{$fila->name}}" data-code="{{$fila->code}}"data-url_drive="{{$fila->url_drive}}" data-id_materia="{{$fila->id}}" data-toggle="modal" data-target="#edit">
                        <i class="fa fa-edit" aria-hidden="true"></i>
                        </button>
-                        <!-- revisar -->
-                       <a href=""  class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Detalle Materia" >
+                        <!-- detalles -->
+                       <a href="{{url("detalle_materia/$fila->id")}}"  class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Detalle Materia" >
                        <i class="fa fa-eye" aria-hidden="true"></i>
                        </a>
                         <!-- Eliminar -->

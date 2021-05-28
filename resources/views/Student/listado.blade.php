@@ -455,7 +455,7 @@ table td {
         <h4 class="modal-title" id="myModalLabel">Enviar Comentario</h4>
       </div>
       
-       <form action="{{url('enviar_comentario')}}"  method="post" id="enviar_comentario"  class="formentrada"  >
+       <form action="{{url('enviar_comentario')}}"  method="post" id="f_editar_usuario"  class="formentrada"  >
                 
         <div class="modal-body">
             <div class="form-group">   

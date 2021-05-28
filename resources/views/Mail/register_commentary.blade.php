@@ -27,7 +27,7 @@
     <br>
     <h2>Docente {{$commentary->profe}} </h2>
      
-      <p align="justify" >El Estudiante {{$commentary->username}} con el correo {{$commentary->useremail}} ha realizado el siguiente comentario con respecto a la calificacion del item <strong>{{$commentary->item}}</strong> con una nita de <strong>{{$commentary->nota}}</strong> de la materia <strong>{{$commentary->mate}}</strong> </p>
+      <p align="justify" >El Estudiante {{$commentary->username}} con el correo {{$commentary->useremail}} ha realizado el siguiente comentario con respecto a la calificacion del item <strong>{{$commentary->item}}</strong> con una nota de <strong>{{$commentary->nota}}</strong> de la materia <strong>{{$commentary->mate}}</strong> </p>
 
      <p  align="justify">{{$commentary->coment}}
      <br>

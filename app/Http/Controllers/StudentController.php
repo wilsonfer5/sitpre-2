@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Subject;
+use App\Comentario;
 use App\Http\Requests\CreateMessageRequest;
 use App\User;
 use Google_Client;
@@ -14,7 +15,7 @@ use League\Csv\Statement;
 use Illuminate\Mail\Mailable;
 use App\Mail\EnviarComentario;
 use Mail;
-
+use App\Http\Requests\studentCommentaryRequest;
 
 class StudentController extends Controller
 {
@@ -37,6 +38,29 @@ class StudentController extends Controller
         
       return view('Student.video',['listado' => $listado]);
     }
+
+
+      //enviar comentario al docente
+     public function enviar_comentario(Request $request)
+     {
+        
+         
+
+    var_dump($request->input('emailpro'));
+
+     if (!($request->coment==" ")) {
+            var_dump('etro al if');
+           
+            Mail::to($request->input('emailpro'))->send(new EnviarComentario($request));
+            $request->session()->flash('alert-success', 'Envio de Comentario Exitoso !!');
+            return redirect()->to($request->input('userurl')."");       
+     }else{
+              
+            $request->session()->flash('alert-danger', 'Ocurrio un error!!');
+            return redirect()->to($request->input('userurl')."");
+        }
+
+     }
 
 
     //Metodo para buscar las materias por division dependiendo del grupo seleccionadao
@@ -140,12 +164,11 @@ class StudentController extends Controller
         $observaciones=$this->obtener_observaciones($materia);
         if($listado2&&$encabezado&&$observaciones){
          $listado =Subject::orderBy('name', 'ASC')->get();
-        return view('Student.listado', ['listado' => $listado,'observaciones'=>$observaciones,'nombre_materia'=>$materia->name.'-'.$grupo[1]],
-        ['listado2' => $listado2,'encabezado'=>$encabezado,'nombre_docente'=>$docente->name,'email_docente'=>$docente->email]);
+        return view('Student.listado', ['listado' => $listado,'observaciones'=>$observaciones,'nombre_materia'=>$materia->name.'-'.$grupo[1]],['listado2' => $listado2,'encabezado'=>$encabezado,'nombre_docente'=>$docente->name,'email_docente'=>$docente->email]);
         }
         
         if($listado2==0){
-        $request->session()->flash('alert-danger', 'Aviso: No se encontraron notas para mostrar');
+        $request->session()->flash('alert-danger', 'Aviso: No se encontraron notas para mostrar para el estudiante');
         return redirect()->to('/student');
         }
         if($observaciones==0){
@@ -395,22 +418,6 @@ class StudentController extends Controller
      } 
 
 
-     public function enviar_comentario(Request $request)
-     {
-
     
-     if (!($request->coment==" ")) {
-          
-        var_dump('entro al if');
-            Mail::to($request->input('emailpro'))->send(new EnviarComentario($request));
-            $request->session()->flash('alert-success', 'Envio de Comentario Exitoso !!');
-            return redirect()->to($request->input('userurl')."");       
-     }else{
-              
-            $request->session()->flash('alert-danger', 'Ocurrio un error!!');
-            return redirect()->to($request->input('userurl')."");
-        }
-
-     }
  
 }
