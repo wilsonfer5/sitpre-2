@@ -161,48 +161,101 @@
             @endforeach
           </div>
           
-<!------------------------------------------------------------------------------------------------------>
-               
 
+<!---------------------------------tabla de datos de la hoja de excel------------------------------------>
+
+
+                
             <div class="x_content table-responsive">
+
+              
+     <!---------------------------------formulario de filtro de tabla------------------------------------>          
+<div class="row content">
+                
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  
+                  <h3 style="text-align: center;" >Filtro de tabla</h3>
+                  <form action="#" class="formentrada">
+                    <div class="form-group">
+                      <div >
+                        <div class=" col-lg-4 col-md-6 col-sm-12" >
+                         <label data-toggle="tooltip" data-placement="top" title="Actividades de Tercera nota" >Item</label>
+                         <select class="form-control"name="itemMateria"> 
+                         <@for($i= 4; $i<count($encabezado);$i++)
+                            <option size="100%" value="{{$encabezado[$i]}}</">{{$encabezado[$i]}}</option>
+                          @endfor
+                         </select>
+                        </div>
+                        <div class=" col-lg-4 col-md-6 col-sm-12" >
+                         <label data-toggle="tooltip" data-placement="top" title="Calificacion Menor" >Intervalo Menor</label>
+                          <input size="100%" class="form-control" type="number" step="0.1" min="0" max="5" ></input>
+                        </div>
+                        <div class=" col-lg-4 col-md-6 col-sm-12" >
+                         <label data-toggle="tooltip" data-placement="top" title="Calificacion Mayor" >Intervalo Mayor</label>
+                          <input size="100%" class="form-control" type="number" step="0.1" min="0" max="5" ></input>
+                        </div>
+                      </div>     
+                    </div>
+                  </form>
+                </div>
+              </div>
+          
+        <br>
+
+<!---------------------------------fin de filtro------------------------------------>
+
+
+              
+
+
                  
-                    <table id="tabla_de_miembros"  class="table table-striped table-bordered table align-middle table table-hover " style="width:50%" align="center">
+    <table id="tabla_de_miembros"  class="table table-striped table-bordered table align-middle table table-hover " style="width:50%" align="center">
                      
                         <thead width="130px">
                            @for ($i =0; $i<count($encabezado) ; $i++) 
                       <th style="text-align: center;" ><a>{{$encabezado[$i]}}</a></th>
                             @endfor
-                      <th align="center"><a>Acción</a></th>
+                      <th style="text-align: center;" ><a>Acción</a></th>
                       
                     </thead>
-                     
-                     
-                     @foreach($listado2 as $fila)
+             @foreach($listado2 as $fila)
                       <tbody>
-
-                    
-                    @if(!empty($fila[$encabezado[0]]))
+                        
+              <tr> 
+                   
+         @if(!empty($fila[$encabezado[0]]))
                     @for($j=0;$j<count($encabezado);$j++)
-                      <td>  {{$fila[$encabezado[$j]]}} </td>
+                      
+             @if($j>3)
+                          @if($fila[$encabezado[$j]]=="")
+                       <td style="text-align: center;" >N/A</td>
+                           @elseif($fila[$encabezado[$j]] >= "0" && $fila[$encabezado[$j]] < "3")
+                      <td style="color: red;text-align: center;" ><strong>{{ $fila[$encabezado[$j]]  }}</strong></td>
+                           @elseif($fila[$encabezado[$j]] >= "3" && $fila[$encabezado[$j]] <"4,5")
+                           <td style="color: #e8a010;text-align: center;" > <strong>{{ $fila[$encabezado[$j]]  }}</strong></td>
+                           @else   
+                      <td style="color: green;text-align: center;"><strong>{{ $fila[$encabezado[$j]]  }}</strong></td>
+                              @endif
+            @else
+                  <td style="text-align: center;">  {{$fila[$encabezado[$j]]}} </td>
+              @endif
                         @endfor 
-                     @else  
+           @else  
                            @break
-                        @endif
+          @endif
                                    
-                      <td>
+                      <td style="text-align: center;">
                         <button class="btn btn-xs btn-danger" data-toggle="modal" data-placement="right" title="Realiza un comentario sobre la nota obsevada." data-placement="top"  title="Editar Materia" data-target="#comentario">
                        <i class="fa fa-eye" aria-hidden="true"> Detalle </i>
                          </button>
-                       </td> 
-                        @endforeach
-                         
-                   
+                          </tr>
+                          @endforeach
+
                 </tbody>
-                     
+                      
                      
                     </table>   
-                     
-
+     
                    </div>
                    <!-- fin tabla notas -->
                       <div>
@@ -253,10 +306,6 @@
 
 
 
-
-
-
-
         <!-- footer content -->
         <footer>
           <div class="pull-right">
@@ -295,6 +344,8 @@
     <script src="../vendors/jszip/dist/jszip.min.js"></script>
     <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+   
+
    <script language="javascript">
     $('#tabla_de_miembros').DataTable({
       info:false,
@@ -326,29 +377,6 @@
   </script>
 
 
-  <script>
-  
-  $('#edit').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) 
-      var name = button.data('name') 
-      var code = button.data('code') 
-      var id_subjects = button.data('id_materia') 
-      var url_drive = button.data('url_drive') 
-      var group=button.data('group')
-      
-      var grupo = code.split('-');
-      
-        
-      var modal = $(this)
-      modal.find('.modal-body #name').val(name);
-      modal.find('.modal-body #code').val(grupo[0]);
-      modal.find('.modal-body #group').val(grupo[1]);
-      modal.find('.modal-body #url_drive').val(url_drive);
-      modal.find('.modal-body #id_materia').val(id_subjects);
-})
-
- 
-</script>
 
 <script type="text/javascript">
       $(function () {
