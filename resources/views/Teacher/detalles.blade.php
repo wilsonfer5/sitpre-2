@@ -142,20 +142,20 @@
                       <div >
                         <div class=" col-lg-4 col-md-6 col-sm-12" >
                          <label data-toggle="tooltip" data-placement="top" title="Actividades de Tercera nota" >Item</label>
-                         <select class="form-control"name="itemMateria"> 
-                          <option  size="100%" value="">Mostrar Todo </option>
+                         <select class="form-control" id="itemMateria" name="itemMateria"> 
+                          <option  size="100%" value=""> Mostrar Todo </option>
                          <@for($i= 4; $i<count($encabezado);$i++)
-                            <option size="100%" value="{{$encabezado[$i]}}</">{{$encabezado[$i]}}</option>
+                            <option size="100%" value="{{$i}}">{{$encabezado[$i]}}</option>
                           @endfor
                          </select>
                         </div>
                         <div class=" col-lg-4 col-md-6 col-sm-12" >
                          <label data-toggle="tooltip" data-placement="top" title="Calificacion Menor" >Intervalo Menor</label>
-                          <input size="100%" class="form-control" type="number" step="0.1" min="0" max="5" placeholder="0"></input>
+                          <input id="min" name="min"  size="100%" class="form-control" type="number" step="0.1" min="0" max="5" placeholder="0"></input>
                         </div>
                         <div class=" col-lg-4 col-md-6 col-sm-12" >
                          <label data-toggle="tooltip" data-placement="top" title="Calificacion Mayor" >Intervalo Mayor</label>
-                          <input size="100%" class="form-control" type="number" step="0.1" min="0" max="5" placeholder="5"></input>
+                          <input  id="max" name="max" size="100%" class="form-control" type="number" step="0.1" min="0" max="5" placeholder="5"></input>
                         </div>
                           </div>     
                        </div>
@@ -294,5 +294,47 @@
   $('[data-toggle="tooltip"]').tooltip()
 })
     </script>
+
+<script type="text/javascript">
+/* Custom filtering function which will search data in column four between two values */
+$.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+      
+
+        var min = parseFloat( $('#min').val(), 0);
+        var max = parseFloat( $('#max').val(), 0 );
+        var e = document.getElementById("itemMateria");
+        var strUser = e.value;
+        console.log("el valor de la posción es: "+strUser+" min "+ min + "max" + max);
+
+        var note = data[strUser].replace(",",".") || 0; // use data for the note column
+        console.log("note: "+data[strUser]);
+
+        //var noteconsul = note.replace(',', '.');
+        // var minimo =min.replace(',', '.');
+        // var maximo =max.replace(',', '.');
+
+        if ( ( isNaN( min ) && isNaN( max ) ) ||
+             ( isNaN( min ) && note <= max ) ||
+             ( min <= note   && isNaN( max ) ) ||
+             ( min <= note   && note <= max ) )
+        {
+            return true;
+        }
+        return false;
+    }
+);
+ 
+$(document).ready(function() {
+    var table = $('#tabla_de_miembros').DataTable();
+     
+    // Event listener to the two range filtering inputs to redraw on input
+    $('#min, #max').keyup( function() {
+        table.draw();
+    } );
+} );
+    </script>
+
+
   </body>
 </html>
