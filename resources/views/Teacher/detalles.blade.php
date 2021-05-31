@@ -171,7 +171,7 @@
                   @for ($i =0; $i<count($encabezado) ; $i++) 
                      <th style="text-align: center;" ><a>{{$encabezado[$i]}}</a></th>
                             @endfor
-                      <th style="text-align: center;" ><a>Acción</a></th>
+                      <th style="text-align: center;" ><a>Acciones</a></th>
                </tr>
           </thead>
       
