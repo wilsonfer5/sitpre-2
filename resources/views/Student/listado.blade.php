@@ -281,9 +281,12 @@ table td {
         <div class="top_nav">
           <div class="nav_menu">
             <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars" style="color:white"></i></a>
-              </div>
+              <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+            <a  href="student">
+            <img src="../img/logo3.svg"  class="site_title">
+            </a>
+            </div>
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="" >
