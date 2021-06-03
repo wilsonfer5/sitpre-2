@@ -25,8 +25,8 @@
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.css" rel="stylesheet">   
   </head>
-<body class="nav-md">
-    <div class="container body ">
+<body class="nav-md" >
+    <!--div class="container body ">
       <div class="main_container">
         <!--div class="col-md-3 left_col">
           <div class="left_col scroll-view">
@@ -71,8 +71,8 @@
               </a>
             </div>
             </menu footer buttons -->
-          </div>
-        </div>
+          <!--/div>
+        </div-->
    <!-- top navigation -->
 <div class="top_nav">
     <div class="nav_menu">
@@ -109,19 +109,16 @@
   </div>
   <!-- /top navigation -->
   <!-- page content -->
-<div class="" role="main">
-<div class="">
+
+
 <div class="page-title">
-<div class="title_right">
-<div class="col-md-5 col-sm-5 col-xs-12 ">
-<div class="row">
+
 <div class="col-md-12 col-sm-12 col-xs-12">
-<h2>Administrar Materias</h2>
+<h1 id="nmateria" style="text-align: center;">Detalle Materias: {{$nombre_materia}}</h1>
 </div>
+
 </div>
-</div></div></div>
-</div>
-</div>
+
       <!---Mensaje de alertas-->
 <div class="flash-message">
       @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -134,26 +131,26 @@
 <div class="content"> 
   <div class="row ">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <h3 style="text-align: center;" >Filtro de tabla</h3>
+      <h3 style="text-align: left;" >Filtro de tabla</h3>
         <form action="#" id="formfiltro" class="formentrada">
           <div class="form-group">
             <div >
-              <div class=" col-lg-4 col-md-6 col-sm-12" >
+              <div class=" col-lg-2 col-md-6 col-sm-12" >
                <label data-toggle="tooltip" data-placement="top" title="Actividades de Tercera nota" >Item</label>
                <select class="form-control" id="itemMateria" name="itemMateria"> 
-                <option  size="100%" value=""> Mostrar Todo </option>
+                <option  size="50%" value=""> Mostrar Todo </option>
                <@for($i= 4; $i<count($encabezado);$i++)
                   <option size="100%" value="{{$i}}">{{$encabezado[$i]}}</option>
                 @endfor
                </select>
               </div>
-              <div class=" col-lg-4 col-md-6 col-sm-12" >
+              <div class=" col-lg-2 col-md-6 col-sm-12" >
                <label data-toggle="tooltip" data-placement="top" title="Calificacion Menor" >Intervalo Menor</label>
-                <input id="min" name="min"  size="100%" class="form-control" type="number" step="0.1" min="0" max="5" placeholder="0"></input>
+                <input id="min" name="min"  size="50%" class="form-control" type="number" step="0.1" min="0" max="5" placeholder="0"></input>
               </div>
-              <div class=" col-lg-4 col-md-6 col-sm-12" >
+              <div class=" col-lg-2 col-md-6 col-sm-12" >
                <label data-toggle="tooltip" data-placement="top" title="Calificacion Mayor" >Intervalo Mayor</label>
-                <input  id="max" name="max" size="100%" class="form-control" type="number" step="0.1" min="0" max="5" placeholder="5"></input>
+                <input  id="max" name="max"  class="form-control" type="number" step="0.1" min="0" max="5" placeholder="5"></input>
               </div>
             </div>     
           </div>
@@ -163,9 +160,8 @@
                   <br>
   <!-- tabla de datos de la hoja de excel -->
 <div class="x_content"> 
-    
-     
-   <table id="tabla_de_miembros"  name="miembros"   class="table table-striped table-bordered table align-middle table table-hover table-responsive" style="width:50%" align="center">
+  <div class="row ">
+   <table id="tabla_de_miembros"  name="miembros"   class="table table-striped table-bordered table align-middle display nowrap table table-hover responsive" style="width:100%" align="center">
       <thead width="130px">
          <tr>
             @for ($i =0; $i<count($encabezado) ; $i++) 
@@ -175,6 +171,7 @@
          </tr>
        </thead>
       <tbody>  
+        
         @foreach($listado2 as $fila)
           @if(!empty($fila[$encabezado[0]]))                    
         <tr>                  
@@ -198,16 +195,40 @@
                 @break 
             @endif                  
                   <td style="text-align: center;">
-                  <button class="btn btn-xs btn-danger" data-toggle="modal" data-placement="right" title="Realiza un comentario sobre la nota obsevada." data-placement="top"  title="Editar Materia" data-target="#comentario">
+                  <button class="btn btn-xs btn-danger" data-toggle="modal" data-placement="right"  data-placement="top"  title="Detalle Estudiante" data-nombree="{{$fila[$encabezado[2]]}}" data-definitiva="{{$encabezado[count($encabezado)-1]}}" data-nota="{{$fila[$encabezado[count($encabezado)-1]]}}" data-target="#detalle">
                   <i class="fa fa-eye" aria-hidden="true"> Detalle </i>
                   </button>
           </tr>  
           @endforeach              
         </tbody>
       </table>
+    </div></div>
+ 
+
+<!----------Modal para mostrar el detalles del estudiante seleccionado -------------->
+         
+
+
+<div class="modal fade" id="detalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" id="cerrar2" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detalles Estudiante </h4>
+        </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="student" ></div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"  id="definitiva" ></div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  id="tabla" ></div>
+
+        <div class="modal-footer">
+          
+          <button type="button" id="cerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
     </div>
   </div>
-
+</div>
+            <!--------------------------------->
 
 
   <!--fin tabla de datos de la hoja de excel-->
@@ -224,6 +245,10 @@
 <!-- fin footer content -->
 <!-- fin footer content -->
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -234,6 +259,20 @@
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+
+   <script type="text/javascript">
+      $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    </script>
+ <!-- import pdf -->
+
+ 
+  <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+
 
      <!-- Datatables -->
     <script src="../vendors/datatables.net/js/jquery.dataTables.js"></script>
@@ -248,16 +287,8 @@
     <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script src="../vendors/jszip/dist/jszip.min.js"></script>
-    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-    <script type="text/javascript">
-              $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-
-   <script language="javascript">
+   
+   <!--script language="javascript">
     $('#tabla_de_miembros').DataTable({
       info:false,
       language: {
@@ -284,7 +315,7 @@
     });
 
    $('div.flash-message').delay(8000).slideUp(300);
-  </script>
+  </script-->
 
 <script type="text/javascript">
     /* Custom filtering function which will search data in column four between two values */
@@ -312,7 +343,40 @@
     );
      
     $(document).ready(function() {
-        var table = $('#tabla_de_miembros').DataTable(); 
+        var table = $('#tabla_de_miembros').DataTable({
+          info:false,
+          dom: 'Bfrtip',
+    buttons: [
+    {
+    extend: 'pdf',
+    text: 'PDF',
+    title: function () { return $('#nmateria').text(); },
+  },{
+    extend: 'excel',
+    text: 'Excel',
+    title: function () { return $('#nmateria').text(); },
+  }],
+      language: {
+        "decimal": "",
+        "emptyTable": "No hay información para mostrar",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Paginación _MENU_ ",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar Estudiante:",
+        "zeroRecords": "No se encontraron resultados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+        }
+        }); 
         // Event listener to the two range filtering inputs to redraw on input
         $('#min, #max').change(function(){
           table.draw();
@@ -329,5 +393,68 @@
         });
     } );
     </script>
+
+    <script type="text/javascript">
+  
+  $('#detalle').on('show.bs.modal', function (event) {
+
+      var button = $(event.relatedTarget) 
+
+ 
+      var nombree = button.data('nombree') 
+      var definitiva= button.data('definitiva')
+      var nota=button.data('nota')
+      
+      var modal=(this);
+  var body1 = document.getElementById("student");
+  var body2 = document.getElementById("definitiva");
+  var btncerrar=document.getElementById("cerrar");
+  var btnc2=document.getElementById("cerrar2");
+
+  var nomE = document.createElement("h3");
+  nomE.innerHTML = nombree;
+  body1.appendChild(nomE);
+
+  
+  var notadef = document.createElement("h3"); 
+ notadef.innerHTML=nota;
+ if (nota>= '0' && nota<'3'){
+  //notadef.style.color="red"; 
+  notadef.setAttribute('style', 'text-align: center;color:red');
+ }else if (nota>= '3' && nota<'4,5'){
+  //notadef.style.color='#e8a010';
+  notadef.setAttribute('style', 'text-align: center;color:#e8a010')
+  }else{
+ // notadef.style.color='green';
+  notadef.setAttribute('style', 'text-align: center;color:green')
+  }
+   body2.appendChild(notadef)
+
+  var def = document.createElement("h4") 
+  def.innerHTML=definitiva
+  def.setAttribute('style', 'text-align: center')
+  body2.appendChild(def) 
+
+btncerrar.onclick = function() {
+close();
+ console.log('entro')
+};
+btnc2.onclick = function() {
+close(); 
+ console.log('entro')
+};
+
+function close(){
+  body1.removeChild(nomE);
+ body2.removeChild(notadef)
+ body2.removeChild(def)
+}
+});
+
+
+
+
+</script>
+
 </body>
 </html>

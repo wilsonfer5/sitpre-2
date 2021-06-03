@@ -45,7 +45,7 @@ Route::post('enviar_comentario', 'StudentController@enviar_comentario');
 
 
 //Rutas para profesor
-Route::get('teacher','TeacherController@index');
+Route::get('/teacher','TeacherController@index');
 Route::get('listado_materias/{filtro?}/{orden?}', 'TeacherController@listado_materias');
 Route::get('video', 'TeacherController@video_player');
 Route::get('form_editar_materia/{id}', 'TeacherController@form_editar_materia');
