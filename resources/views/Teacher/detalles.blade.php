@@ -110,7 +110,8 @@
   <!-- /top navigation -->
   <!-- page content -->
 
-
+<div class="right_col" role="main">
+<div class="">
 <div class="page-title">
 
 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -128,8 +129,7 @@
       @endforeach</div>
 <!-- Fin Mensaje de alertas -->
 <!-- formulario de filtro de tabla --> 
-<div class="content"> 
-  <div class="row ">
+<div class="x_content"> 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <h3 style="text-align: left;" >Filtro de tabla</h3>
         <form action="#" id="formfiltro" class="formentrada">
@@ -155,13 +155,14 @@
             </div>     
           </div>
         </form>
-      </div></div></div>
+      </div></div>
   <!-- fin de filtro -->
-                  <br>
+             
   <!-- tabla de datos de la hoja de excel -->
+  <div class="col-md-12 col-sm-12 col-xs-12"> 
 <div class="x_content"> 
-  <div class="row ">
-   <table id="tabla_de_miembros"  name="miembros"   class="table table-striped table-bordered table align-middle display nowrap table table-hover responsive" style="width:100%" align="center">
+  
+   <table id="tabla_de_miembros"  name="miembros"   class="table table-striped table-bordered align-middle display nowrap  table-hover responsive" style="width:100%" align="center">
       <thead width="130px">
          <tr>
             @for ($i =0; $i<count($encabezado) ; $i++) 
@@ -195,14 +196,15 @@
                 @break 
             @endif                  
                   <td style="text-align: center;">
-                  <button class="btn btn-xs btn-danger" data-toggle="modal" data-placement="right"  data-placement="top"  title="Detalle Estudiante" data-nombree="{{$fila[$encabezado[2]]}}" data-definitiva="{{$encabezado[count($encabezado)-1]}}" data-nota="{{$fila[$encabezado[count($encabezado)-1]]}}" data-target="#detalle">
+                  <button class="btn btn-xs btn-danger" data-toggle="modal" data-placement="right"  data-placement="top"  title="Detalle Estudiante" data-nombree="{{$fila[$encabezado[2]]}}" data-definitiva="{{$encabezado[count($encabezado)-1]}}" data-nota="{{$fila[$encabezado[count($encabezado)-1]]}}"  data-target="#detalle">
                   <i class="fa fa-eye" aria-hidden="true"> Detalle </i>
                   </button>
           </tr>  
           @endforeach              
         </tbody>
       </table>
-    </div></div>
+    </div>
+    </div>
  
 
 <!----------Modal para mostrar el detalles del estudiante seleccionado -------------->
@@ -229,20 +231,27 @@
   </div>
 </div>
             <!--------------------------------->
-
+ </div>
+</div>
+      
 
   <!--fin tabla de datos de la hoja de excel-->
 <!-- fin page content -->
 
-
 <!-- footer content -->
     <footer>
-      <div class="clearfix"></div>
+      
       <div class="pull-right">
          UFPS - Universidad Fransisco de Paula Santander <i class="fa fa-copyright" aria-hidden="true">{{date('Y')}}</i>
-     </div>   
+     </div>  
+     <div class="clearfix"></div> 
     </footer>
+
+   </div>
+    </div>
+  
 <!-- fin footer content -->
+
 <!-- fin footer content -->
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -288,34 +297,6 @@
     <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
    
-   <!--script language="javascript">
-    $('#tabla_de_miembros').DataTable({
-      info:false,
-      language: {
-        "decimal": "",
-        "emptyTable": "No hay información para mostrar",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-        "infoPostFix": "",
-        "thousands": ",",
-        "lengthMenu": "Paginación _MENU_ ",
-        "loadingRecords": "Cargando...",
-        "processing": "Procesando...",
-        "search": "Buscar Estudiante:",
-        "zeroRecords": "No se encontraron resultados",
-        "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-        }
-        }
-
-    });
-
-   $('div.flash-message').delay(8000).slideUp(300);
-  </script-->
 
 <script type="text/javascript">
     /* Custom filtering function which will search data in column four between two values */
@@ -377,6 +358,9 @@
         }
         }
         }); 
+
+   $('div.flash-message').delay(8000).slideUp(300);
+
         // Event listener to the two range filtering inputs to redraw on input
         $('#min, #max').change(function(){
           table.draw();
@@ -404,12 +388,14 @@
       var nombree = button.data('nombree') 
       var definitiva= button.data('definitiva')
       var nota=button.data('nota')
+      //var cabeza=button.data('cabeza')
       
       var modal=(this);
   var body1 = document.getElementById("student");
   var body2 = document.getElementById("definitiva");
   var btncerrar=document.getElementById("cerrar");
   var btnc2=document.getElementById("cerrar2");
+  var myTable=document.getElementById("tabla");
 
   var nomE = document.createElement("h3");
   nomE.innerHTML = nombree;
@@ -435,6 +421,51 @@
   def.setAttribute('style', 'text-align: center')
   body2.appendChild(def) 
 
+//tabla_de_miembros
+//
+
+ 
+ 
+let employees = [
+    { name: 'James', age: 21, country: 'United States' },
+    { name: 'Rony', age: 31, country: 'United Kingdom' },
+    { name: 'Peter', age: 58, country: 'Canada' },
+    { name: 'Marks', age: 20, country: 'Spain' }
+]
+ 
+let headers = ['Name', 'Age', 'Country'];
+ 
+
+    let table = document.createElement('table');
+    let headerRow = document.createElement('tr');
+ 
+    headers.forEach(headerText => {
+        let header = document.createElement('th');
+        let textNode = document.createTextNode(headerText);
+        header.appendChild(textNode);
+        headerRow.appendChild(header);
+    });
+ 
+    table.appendChild(headerRow);
+ 
+    employees.forEach(emp => {
+        let row = document.createElement('tr');
+ 
+        Object.values(emp).forEach(text => {
+            let cell = document.createElement('td');
+            let textNode = document.createTextNode(text);
+            cell.appendChild(textNode);
+            row.appendChild(cell);
+        })
+ 
+        table.appendChild(row);
+    });
+ 
+    myTable.appendChild(table);
+
+
+
+
 btncerrar.onclick = function() {
 close();
  console.log('entro')
@@ -445,13 +476,12 @@ close();
 };
 
 function close(){
-  body1.removeChild(nomE);
+body1.removeChild(nomE);
  body2.removeChild(notadef)
  body2.removeChild(def)
+   myTable.removeChild(table);
 }
 });
-
-
 
 
 </script>

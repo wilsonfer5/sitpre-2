@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Mail;
-use App\Comentario
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -14,15 +13,16 @@ class EnviarComentario extends Mailable
 
     public $commentary;
 
-    public function __construct(Comentario $comentario)
+    public function __construct($comentario)
     {
-        $this->commentary = $comentario;
+        
+       $this->commentary = $comentario;
+
     }
 
     public function build()
     {
-        return $this->view('Mail.register_commentary')
-        ->from('noreplysitpre@gmail.com')
-        ->subject('Nuevo Comentario');
+        return $this->view('Mail.register_commentary')->from('noreplysitpre@gmail.com')->subject('Nuevo Comentario');
+
     }
 }

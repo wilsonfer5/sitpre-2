@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Subject;
-use App\Comentario;
 use App\Http\Requests\CreateMessageRequest;
 use App\User;
 use Google_Client;
@@ -15,7 +14,7 @@ use League\Csv\Statement;
 use Illuminate\Mail\Mailable;
 use App\Mail\EnviarComentario;
 use Mail;
-use App\Http\Requests\studentCommentaryRequest;
+
 
 class StudentController extends Controller
 {
@@ -42,21 +41,16 @@ class StudentController extends Controller
 
       //enviar comentario al docente
      public function enviar_comentario(Request $request)
-     {
-        
-         
+     {      
 
-    var_dump($request->input('emailpro'));
-
-     if (!($request->coment==" ")) {
-            var_dump('etro al if');
-           
-            Mail::to($request->input('emailpro'))->send(new EnviarComentario($request));
+     if (!($request->input('coment')=="")) {
+           $comentario = new EnviarComentario($request->all());
+    Mail::to($request->input('emailpro'))->send($comentario);
             $request->session()->flash('alert-success', 'Envio de Comentario Exitoso !!');
+            
             return redirect()->to($request->input('userurl')."");       
      }else{
-              
-            $request->session()->flash('alert-danger', 'Ocurrio un error!!');
+            $request->session()->flash('alert-danger', 'Ocurrio un error!! el comentario no puede estar vacio.');
             return redirect()->to($request->input('userurl')."");
         }
 

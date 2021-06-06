@@ -22,14 +22,25 @@
     <link rel="shortcut icon" href="img/favicon1.png">
 </head>
 <body>
-    <h1 align=left>Nuevo Comentario.</h1>
+    <h1 style="text-align: left;">Nuevo Comentario.</h1>
 
     <br>
-    <h2>Docente {{$commentary->profe}} </h2>
+    <h2>Docente {{$commentary['profe']}} </h2>
      
-      <p align="justify" >El Estudiante {{$commentary->username}} con el correo {{$commentary->useremail}} ha realizado el siguiente comentario con respecto a la calificacion del item <strong>{{$commentary->item}}</strong> con una nota de <strong>{{$commentary->nota}}</strong> de la materia <strong>{{$commentary->mate}}</strong> </p>
+      <p style="text-align: justify;" >El Estudiante {{$commentary['username']}}
+        con el correo {{$commentary['useremail']}}
+        ha realizado el siguiente comentario con respecto a la calificación del item <strong>{{$commentary['item']}}</strong>
+        con una nota de 
+        @if($commentary['nota']>= '0' && $commentary['nota']<"3")
+        <strong style="color: red;">{{$commentary['nota']}}</strong> 
+        @elseif($commentary['nota']>= '3' && $commentary['nota']<"4,5")
+        <strong style="color:#e8a010; ;">{{$commentary['nota']}}</strong>
+        @else
+        <strong style="color:green; ;">{{$commentary['nota']}}</strong>
+        @endif    
+        de la materia <strong>{{$commentary['mate']}}</strong> </p>
 
-     <p  align="justify">{{$commentary->coment}}
+     <p  style="text-align: justify;">{{$commentary['coment']}}
      <br>
      <br>
      <ul>
@@ -41,8 +52,6 @@
      <br><br><br>
      Equipo de desarrollo <br>
      SITPRE UFPS</p>
-     <img src="{{ $commentary->embed(public_path() . '/img/logo3.png') }}" />
-
 
 </body>
 </html>

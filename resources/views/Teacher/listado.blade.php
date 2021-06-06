@@ -310,7 +310,7 @@
           </div>
           
 <!------------------------------------------------------------------------------------------------------>
-                  <div class="x_content">
+               <div class="x_content">
                   <button class="btn btn-xs btn-danger"  data-toggle="modal" data-target="#create">Nueva Materia
                        <i class="fa fa-plus" aria-hidden="true"></i>
                        </button>

@@ -22,6 +22,6 @@ class Comentario extends Authenticatable
     protected $fillable = [
         'profe', 'emailpro', 'mate','item','nota','username','usermail','userurl','coment',
     ];
-
+    
    
 }
