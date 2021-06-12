@@ -338,45 +338,10 @@ table td {
                 <div class="x_panel">
                  
                 <h1 align="center">{{$nombre_materia}}</h1>
-                <h5 align="center"><strong>Prof.</strong> {{$nombre_docente}}</h5>
+                <h2 align="center"><strong>Prof.</strong> {{$nombre_docente}}</h2>
               
 
-           <div class="container-fluid">
-                     <div class="container">
-            <div class="row responsive">
-
-              <div class="col-md-6 col-sm-6 col-xs-12" >
-                 <h1 align="center" style="font-size: 200px;">
-                  @foreach($listado2 as $fila)
-                   @if($fila[$encabezado[count($encabezado)-1]]=="")
-                   <strong>N/N</strong> 
-                   @elseif($fila[$encabezado[count($encabezado)-1]]>= "0" && $fila[$encabezado[count($encabezado)-1]] < "3")
-                   <strong style="color: red;"> {{$fila[$encabezado[count($encabezado)-1]]}}</strong> 
-                   @elseif($fila[$encabezado[count($encabezado)-1]]>="3" && $fila[$encabezado[count($encabezado)-1]]<"4,5")
-                   <strong style="color:#e8a010;"> {{$fila[$encabezado[count($encabezado)-1]]}}</strong> 
-                   @else
-                   <strong style="color: green;"> {{$fila[$encabezado[count($encabezado)-1]]}}</strong> 
-                   @endif
-                   <br>
-                   <h3 align="center" style="font-size: 50px;"> {{$encabezado[count($encabezado)-1]}} </h3> 
-                  @endforeach
-               </h1>
-                  
-              </div>
-                
-
-                <div class="col-md-6 col-sm-6 col-xs-12" >
-                        <div class="card">
-                            <div class="card-body">
-                                <canvas id="singelBarChart" ></canvas>
-                            </div>
-                        </div>
-                    </div><!-- /# column -->
-
-                </div>
-
-                </div>
-                </div> 
+           
 
 
 
@@ -388,8 +353,8 @@ table td {
                         <thead width="130px">
                       <th style="text-align: center;" ><a>ITEM</a></th>
                       <th align="center"><a>NOTA</a></th>
-                      <th align="center"><a>COMENTARIO</a></th>
-                   @for ($i =4; $i<count($encabezado)-1 ; $i++)
+                      <th align="center"><a>ACCIONES</a></th>
+                   @for ($i =4; $i<count($encabezado); $i++)
                     
                     </thead>
                       <tbody>
@@ -414,34 +379,87 @@ table td {
                        <td>N/A</td>
                   @else
                       @if($fila[$encabezado[$i]] >= "0" && $fila[$encabezado[$i]] < "3")
-                      <td style="color: red;" ><strong>{{ $fila[$encabezado[$i]]  }}</strong></td>
-                      @elseif($fila[$encabezado[$i]] >= "3" && $fila[$encabezado[$i]] <"4,5")
-                           <td style="color: #e8a010;" > <strong>{{ $fila[$encabezado[$i]]  }}</strong></td>
-                       @else    
-                      <td style="color: green;"><strong>{{ $fila[$encabezado[$i]]  }}</strong></td>
-                      @endif @endif 
+                      <td style="color: #F44336;" ><strong>{{ $fila[$encabezado[$i]]}}</strong></td>
+                      @elseif((str_replace('.',',',$fila[$encabezado[$i]]) >='3' && str_replace('.',',',$fila[$encabezado[$i]])<'4,5'))
+                      <td style="color: #E28821;" > <strong>{{$fila[$encabezado[$i]]}}</strong></td>
+                      @else    
+                      <td style="color: #3FA435;"> <strong> {{$fila[$encabezado[$i]]}} </strong></td>
+                      @endif 
+                   @endif 
                       <td>
-                        <button class="btn btn-xs btn-danger" data-toggle="modal" data-placement="right" title="Realiza un comentario sobre la nota obsevada." data-placement="top" data-item="{{$encabezado[$i]}}" data-nota= "{{ $fila[$encabezado[$i]]  }}" data-mate="{{$nombre_materia}}" data-emailpro="{{$email_docente}}"data-profe="{{$nombre_docente}}" data-username="{{ auth()->user()->name }}"  data-useremail="{{ auth()->user()->email }}" data-userurl="{{request()->url()}}" title="Editar Materia" data-target="#comentario">
-                       <i class="fa fa-location-arrow" aria-hidden="true"> Comentario </i>
-                         </button>
+                        <button class="btn btn-xs btn-danger" style="width: 30%" data-toggle="modal" data-placement="right" title="Realiza un comentario sobre la nota obsevada." data-placement="top" data-item="{{$encabezado[$i]}}" data-nota= "{{ $fila[$encabezado[$i]]  }}" data-mate="{{$nombre_materia}}" data-emailpro="{{$email_docente}}"data-profe="{{$nombre_docente}}" data-username="{{ auth()->user()->name }}"  data-useremail="{{ auth()->user()->email}}" data-userurl="{{request()->url()}}" title="Editar Materia" data-target="#comentario">
+                       <i class="fa fa-location-arrow" aria-hidden="true"> Comentario </i></button>
+                       
+                       <button class="btn btn-xs btn-danger"  style="width: 30%" data-toggle="modal" data-placement="right" title="ver Detalles" data-placement="top"  title="Detalle Nota" data-itemd="{{$encabezado[$i]}}" data-notad="{{$fila[$encabezado[$i]]}}"  data-target="#detallenota">
+                       <i class="fa fa-eye" aria-hidden="true"> Detalle </i></button>
 
                     </td> 
-                @endforeach @endfor 
+                @endforeach 
+                @endfor 
 
                 </tbody>
 
-                    </table>   
-                    <!--               
+                    </table>
+                  <div class="container-fluid">
+                    <div align="center">
+                      <button id="gaficar" style="height: 30px;" onclick="mostrarfrafica()" class="btn btn-xs btn-danger"  > <i class="fa  fa-bar-chart-o " > Graficar Notas </i> </button>
+                    </div>
+                  </div> 
+
+                  <div class="container-fluid">
+                     <div class="container">
+            <div class="row responsive">
+
+              <!-- div class="col-md-6 col-sm-6 col-xs-12" >
+                 <h1 align="center" style="font-size: 200px;">
+                  @foreach($listado2 as $fila)
+                   @if($fila[$encabezado[count($encabezado)-1]]=="")
+                   <strong>N/N</strong> 
+                   @elseif($fila[$encabezado[count($encabezado)-1]]>= "0" && $fila[$encabezado[count($encabezado)-1]] < "3")
+                   <strong style="color: #F44336;"> {{$fila[$encabezado[count($encabezado)-1]]}}</strong> 
+                   @elseif(($fila[$encabezado[count($encabezado)-1]]>="3" && $fila[$encabezado[count($encabezado)-1]]<"4,5")||($fila[$encabezado[count($encabezado)-1]]>="3" && $fila[$encabezado[count($encabezado)-1]]<"4.5"))
+                   <strong style="color:#E28821;"> {{$fila[$encabezado[count($encabezado)-1]]}}</strong> 
+                   @else
+                   <strong style="color: #3FA435;"> {{$fila[$encabezado[count($encabezado)-1]]}}</strong> 
+                   @endif
+                   <br>
+                    
+                    @foreach($observaciones as $fila2)
+                    
+                    @if(!empty($encabezado[count($encabezado)-1])&&stristr($fila2,$encabezado[count($encabezado)-1])==$fila2)
+                   <h3 align="center" style="font-size: 50px;" data-toggle="tooltip" data-placement="top" title="{{strtoupper($fila2)}}"> {{$encabezado[count($encabezado)-1]}} </h3>
+                   @endif
+                     @endforeach
+                    
+                  @endforeach
+               </h1>
+                  
+              </div-->
+                
+
+                <div id="migrafica" class="col-md-12 col-sm-12 col-xs-12" >
+                        <div class="card" align="center">
+                            <div class="card-body" style="height:80% ; width: 60%;">
+                                <canvas id="singelBarChart" ></canvas>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+
+                </div>
+
+                </div>
+                </div>   
+                    <!--            
                    <strong>OBSERVACIONES</strong> <br>
                    @for ($i =4; $i<count($encabezado) ; $i++)
                     @foreach($observaciones as $fila)
                     <!-----Se realiza la validacion para que las observaciones se llamen igual que las notas-->
-                   <!-- @if(!empty($encabezado[$i])&&stristr($fila,$encabezado[$i])==$fila)
+                    <!--@if(!empty($encabezado[$i])&&stristr($fila,$encabezado[$i])==$fila)
                     {{strtoupper($fila)}} <br>
                     @endif
                      @endforeach
                     @endfor 
-                    -->  
+                  -->
                    </div>
                    <!-- fin tabla notas -->
                 </div>
@@ -457,7 +475,6 @@ table td {
 
 <!----------Modal para editar las materias-------------->
          
-
 
 <div class="modal fade" id="comentario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -516,7 +533,37 @@ table td {
 </div>
             <!--------------------------------->
 
+ <!----------Modal para mostrar el detalles de la nota -------------->
+         
 
+
+<div class="modal fade" id="detallenota" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" id="cerrar2" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detalle Nota</h4>
+        </div>
+
+          <div id="modalbody" class="modal-body">
+          <div >
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="itemnotam" ></div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"  id="notam" ></div>
+          </div>
+          <div class="" >
+              <div id="observam" class="card">
+                 
+             </div>
+          </div>
+          <br>
+          </div>
+          <div class="modal-footer">
+          <button type="button" id="cerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+    </div>
+  </div>
+</div>
+            <!--------------------------------->
 
 
 
@@ -550,6 +597,19 @@ table td {
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
+<script>
+var x = document.getElementById("migrafica");
+x.style.display="none";  
+
+function mostrarfrafica() {
+  
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 
 <script>
   
@@ -582,37 +642,58 @@ table td {
 </script>
     
     <script >
-      
+ 
+var items=[];
+
+var not=[]
+var color=[]
+
+<?php $ind=0;
+for($i=4; $i< count($encabezado);$i++){ ?>          
+items[<?php echo($ind) ?>]='<?php echo $encabezado[$i] ?>'
+<?php $ind++; } ?>
+
+<?php 
+ $in=0;
+for($j=4; $j< count($encabezado);$j++){
+ 
+foreach($listado2 as $fila){    ?> 
+  var temp=<?php echo str_replace(',', '.', trim($fila[$encabezado[$j]]))?>;
+not[<?php echo($in) ?>]=temp; 
+if (temp>='0'&& temp<'3') {
+color[<?php echo($in) ?>]="#F44336";
+}else if(temp>='3'&& temp<'4.5'){
+color[<?php echo($in) ?>]="#E28821";
+}else{
+color[<?php echo($in) ?>]="#3FA435";
+}
+<?php } $in++; } ?>
+
     var ctx = document.getElementById( "singelBarChart");
-    ctx.height = 150;
+    ctx.height = 100;
+    
     
     var myChart = new Chart( ctx, {
         type: 'bar',
         data: {
-            labels: [ 
-
-              <?php for($i=4; $i< count($encabezado)-1;$i++){ ?>          
-               '<?php echo $encabezado[$i] ?>',
-               <?php } ?>                 
-            ],
+            labels: items,
             datasets: [
                 {
                     label: "Notas",
-                    data: [ 
-                <?php 
-                for($j=4; $j< count($encabezado)-1;$j++){
-                foreach($listado2 as $fila){    ?> 
-                   
-               '<?php echo str_replace(',', '.', $fila[$encabezado[$j]])?>',
-                <?php }} ?>
-                    ],
-                    borderColor: "rgba(0, 194, 146, 0.9)",
+                    data: not,
+                    borderColor: color,
                     borderWidth: "0",
-                    backgroundColor: "rgba(0, 194, 146, 0.5)"
+                    backgroundColor: color
+                            
+
                             }
                         ]
         },
         options: {
+           legend: {
+            display: true,
+            legendText : ['Current','Vs last week/month/year','% Change']
+                },
             scales: {
                 yAxes: [ {
                     ticks: {
@@ -626,6 +707,81 @@ table td {
     } );
 
     </script >
+
+    <script type="text/javascript">
+  
+
+  $('#detallenota').on('show.bs.modal',function (event) {
+
+      var button = $(event.relatedTarget) 
+      var itemnota = button.data('itemd') 
+      var not=button.data('notad')
+      //console.log(itemnota +"-"+ not)
+      
+  
+      //var cabeza=button.data('cabeza')
+      
+  var modal=(this);
+  var body1 = document.getElementById("itemnotam");
+  var body2 = document.getElementById("notam");
+  var obsm = document.getElementById("observam");
+  var btncerrar=document.getElementById("cerrar");
+  var btnc2=document.getElementById("cerrar2");
+  
+
+
+  var itemn = document.createElement("h3");
+  itemn.innerHTML = itemnota;
+  body1.appendChild(itemn);
+//console.log("con ,"+(not>= '3' && not<'4,5'))
+//console.log("con ."+(not>= 3 && not<4.5))
+var nota = document.createElement("h3"); 
+ nota.innerHTML=not;
+ if (not>= '0' && not<'3'){
+  nota.setAttribute('style', 'text-align: center;color:#F44336;');
+ }else if ((not>= '3' && not<'4,5')||(not>= 3 && not<4.5)){
+  nota.setAttribute('style', 'text-align: center;color:#E28821;')
+  }else{
+  nota.setAttribute('style', 'text-align: center;color:#3FA435;')
+  }
+   body2.appendChild(nota);
+ 
+ var no="";
+ var obsnotsm=document.createElement('p');
+ obsnotsm.setAttribute('align','justify'); 
+ obsnotsm.setAttribute('style','font-size:150%;');
+
+ <?php foreach($observaciones as $obs){?>
+    no= (<?php echo (json_encode($obs))?>);
+    if(no.includes(itemnota)){
+     var a=no.split(':');
+    obsnotsm.innerHTML=a[1];
+    }<?php  }?>
+
+    obsm.appendChild(obsnotsm);
+    
+
+//tabla_de_miembros
+
+btncerrar.onclick = function() {
+close();
+};
+btnc2.onclick = function() {
+close(); 
+};
+
+function close(){
+body1.removeChild(itemn);
+body2.removeChild(nota);
+obsm.removeChild(obsnotsm);
+
+}
+
+});
+
+
+</script>
+
 
     <script type="text/javascript">
       $(function () {

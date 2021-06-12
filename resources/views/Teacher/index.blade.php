@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
    <title>SITPRE - Manejo de terceros previos</title>
 
     <!-- Bootstrap -->
@@ -18,70 +17,16 @@
 
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon1.png">
-
+    <!-- Google fonts - Poppins-->
+    
     <!-- Custom Theme Style -->
     <link href="build/css/custom.css" rel="stylesheet">
+
+
   </head>
 
   <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <!--div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-            <a  href="teacher">
-            <img src="img/logo3.svg"  class="site_title">
-            </a>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <!--div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="{{ auth()->user()->avatar }}" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Bienvenido,</span>
-                <h6 style="color:black">{{ auth()->user()->name }}</h6>
-              </div>
-              <div class="clearfix"></div>
-            </div>
-            <!-- /menu profile quick info -->
-
-            <!--br />
-
-            <!-- sidebar menu -->
-            <!--div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-               
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-book"></i> Materia <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{ url("listado_materias")}}">Administrar Materias </a></li>
-                     </ul>
-                  </li>
-                   <li><a href="{{ url("video")}}"><i class="fa fa-youtube-play "></i>  Ayuda<span class="label label-danger pull-right">Tutorial</span></a></li>
-               
-                </ul>
-              </div>
-               
-                    
-            </div>
-            <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons -->
-            <!--div class="sidebar-footer hidden-small">
-              
-              <a data-toggle="tooltip" data-placement="top" title="cerrar sesión" href="{{ url('homew/google/logout') }}" 
-              style="width:100%;color:white">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
-          </div>
-        </div>
-
+    
                <!-- top navigation -->
         <div class="top_nav">
           <div class="nav_menu">
@@ -93,7 +38,6 @@
             </div>
 
               <ul class="nav navbar-nav navbar-right">
-          
                 <li class="" >
                   <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:white;">
                     <img src="{{ auth()->user()->avatar }}" alt="">{{ auth()->user()->name }}
@@ -104,8 +48,7 @@
                     <li><a href="{{ url('homew/google/logout') }}"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
                   </ul>
                 </li>
-
-                    <li class="">
+                    <li class="" >
                   <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:white;">
                     <i class="fa fa-book"></i> Materias <span class="fa fa-chevron-down"></span>
                   </a>
@@ -133,20 +76,124 @@
               </div>
             </div>
 
+
             
 
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
+                   <h2 align="center">Bienvenido</h2>
                   <div class="x_title">
-                    <h3 align="center" >Sistema de información para el manejo de terceros previos-
-                    <strong>SITPRE</strong></h3>
+                   
+                    <h3 align="center" ><strong> SITPRE - </strong>Sistema de información para el manejo de terceros previos -
+                    </h3>
                     
                     <div class="clearfix"></div>
+
                   </div>
-                  <div class="x_content">
+
+<div class="content-md container">
+            <div class="row margin-b-20">
+                <div class="col-sm-6">
+                    <h2> - Qué es SITPRE? - </h2>
+                </div>
+            </div>
+            <!--// end row -->
+
+        <div class="row">
+          <div class=" col-sm-7 sm-margin-b-50">
+              <div class="margin-b-30">
+                    <br>
+                     <p style="font-size: 17px; text-align: justify;">El sistema de información SITPRE, Es una aplicación Web planteada para la gestión, de las terceras notas.
+                      </p>
+                    </div>
+<div class="list-icon no-margin-bottom" >
+  <ul>
+  <li><i class="fa fa-check-square-o" ></i> Permitir al docente registrar sus notas por medio de las hojas de cálculo de Google Drive</li>
+  <li><i class="fa fa-check-square-o" ></i> Crear un medio seguro y privado donde el estudiante permita visualizar sus notas</li>
+  <li><i class="fa fa-check-square-o" ></i> Permite autenticar a los clientes por medio de la cuenta institucional</li>
+  
+</ul> </div>
+
+
+ 
+                </div>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <img class="img-responsive" src="img/logo2.svg"  class="site_home" alt="Our Office">
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+
+<div class="content-md container">
+      <div class="row margin-b-20">
+          <div class="col-sm-6">
+              <h2>- Ventajas -</h2>
+              <h3 style="font-size: 17px; "> Con SITPRE.
+            </h3>
+          </div>
+      </div>
+      <!--// end row -->
+<div class="row">
+<div class=" col-sm-6 ">                 
+<div class="list-icon">
+  <ul>
+  <li> <i class="fa fa-circle"></i> Consultar rápidamente las notas. </li>
+  <li>  <i class="fa fa-circle"></i> Con el formato guía de Google Sheet es muy fácil publicar las notas en el orden que desee.</li>
+  <li> <i class="fa fa-circle"></i> Permite filtrar a los estudiantes por nota y por rango de nota.</li>
+  <li><i class="fa fa-circle"></i> Identifica de forma visual las calificaciones de los estudiantes mediante colores.</li>
+</ul> 
+</div> 
+</div>
+<div class="col-sm-6 ">
+<div class="list-icon ">              
+<ul>
+  <li><i class="fa fa-circle"></i> Notificar la carga y publicación de notas via e-mail al estudiante.</li>
+  <li><i class="fa fa-circle"></i> Detalla de forma individual o grupal las notas de los estudiantes.</li>
+  <li><i class="fa fa-circle"></i> Realizar búsquedas por palabras clave. Búsqueda de una materia o estudiante cargados.</li>
+</ul>
+   </div>
+   </div>
+  </div>
+            <!--// end row -->
+ </div>
+
+
+
+<div class="content" align="center" >
+  <div id="mexcel" class="col-md-4 col-sm-4 col-xs-12 " > <button class="btn btn-danger" onclick="mexcel()" > <i class="fa fa-book" > guia formato Excel </i>   </button> </div>
+  <div id="vprofe" class="col-md-4 col-sm-4 col-xs-12 " > <button class="btn btn-danger" onclick="mvideo()" > <i class="fa fa-play" > Video Tutorial </i>  </button> </div>
+  <div id="mprofe" class="col-md-4 col-sm-4 col-xs-12 " > <button class="btn btn-danger" onclick="mprofe()" > <i class="fa fa-book" > guia Docente  </i></button> </div>
+  
+</div>
+
+<div class="x_content " >
+  <div class="col-md-12 col-sm-12 col-xs-12" align="center">
+
+  
+  <div id="manualexcel" class="col-md-6 col-sm-6 col-xs-12 " align="center" >
+    <h3  align="center"> Manual Crear hoja de Google Sheet <a target="_blank" href="https://docs.google.com/spreadsheets/d/15yoJh8hKivyu_mrB-fn90dd4J7z4gN02BZ9OcwXn0HI/edit?usp=sharing">"Ejemplo clic aquí"</a> </h3>
+    <a target="_blank" href="ManuaDocente-SITPRE.pdf" align="right"><i class="fa fa-external-link">ver PDF</i></a>
+    <embed src="ManuaDocente-SITPRE.pdf" type="application/pdf" width="100%" height="600px" />
+  </div>
+  <div id="manualprofe" class="col-md-6 col-sm-6 col-xs-12 " align="center" >
+    <h3 align="center"> Manual del Docente </h3>
+     <a target="_blank" href="ManuaDocente-SITPRE.pdf" align="right"><i class="fa fa-external-link">ver PDF</i></a>
+    <embed src="ManuaDocente-SITPRE.pdf" type="application/pdf" width="100%" height="600px" />
+  </div>
+  <div id="videoprofe" class="content"  align="center"> <h3 align="center"> Video Tutorial </h3>
+ <video style="height: 70%; width:60%;" controls>
+      <source src="SITPRE_DOCENTE.mp4" type="video/mp4">
+    </video></div>
+  
+  </div>
+
+</div>
+
+
+                  <!--div class="x_content">
                       <img src="img/logo2.svg"  class="site_home">
-                  </div>
+                  </div-->
                 </div>
               </div>
             </div>
@@ -176,5 +223,42 @@
     
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
+
+    <script>
+
+var x = document.getElementById("manualexcel");
+var y = document.getElementById("videoprofe");
+var z = document.getElementById("manualprofe");
+x.style.display="none";  
+y.style.display="none";  
+z.style.display="none";  
+
+function mexcel(){
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function mvideo() {
+  
+  if (y.style.display === "none") {
+    y.style.display = "block";
+  } else {
+    y.style.display = "none";
+  }
+}
+
+  function mprofe() {
+  
+  if (z.style.display === "none") {
+    z.style.display = "block";
+  } else {
+    z.style.display = "none";
+  }
+
+}
+</script>
   </body>
 </html>

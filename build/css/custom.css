@@ -4310,3 +4310,25 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
     background-color: #ffff !important;
 }
 /** /bootstrap-datetimepicker **/
+
+.list-icon { margin:20px 0px; }
+  .list-icon ul {
+    padding:0px;
+    margin:0px;
+  }
+  .list-icon ul li {
+      list-style-type:none;
+      position:relative;
+      font-size:16px;
+      padding-left:30px;
+      margin-bottom:10px;
+    }
+ 
+
+.list-icon ul {
+    padding: 0px;
+    margin: 0px;
+}
+.no-margin-bottom {
+    margin-bottom: 0px !important;
+}

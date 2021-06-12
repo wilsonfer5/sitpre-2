@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SITPRE - Manejo de terceros previos</title>
+    <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS-->
@@ -21,6 +22,7 @@
     <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.css" rel="stylesheet">
     <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.css" rel="stylesheet">
     <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.css" rel="stylesheet">
+
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.css" rel="stylesheet">   
@@ -182,11 +184,11 @@
                   @if($fila[$encabezado[$j]]=="")
                   <td style="text-align: center;" >N/A</td>
                   @elseif($fila[$encabezado[$j]] >= "0" && $fila[$encabezado[$j]] < "3")
-                  <td style="color: red;text-align: center;" ><strong>{{ $fila[$encabezado[$j]]  }}</strong></td>
-                  @elseif($fila[$encabezado[$j]] >= "3" && $fila[$encabezado[$j]] <"4,5")
-                  <td style="color: #e8a010;text-align: center;" > <strong>{{ $fila[$encabezado[$j]]  }}</strong></td>
+                  <td style="color: #F44336;text-align: center;" ><strong>{{ $fila[$encabezado[$j]]  }}</strong></td>
+                  @elseif((str_replace('.',',',$fila[$encabezado[$j]]) >='3' && str_replace('.',',',$fila[$encabezado[$j]])<'4,5'))
+                  <td style="color: #E28821;text-align: center;" > <strong>{{ $fila[$encabezado[$j]]  }}</strong></td>
                   @else   
-                  <td style="color: green;text-align: center;"><strong>{{ $fila[$encabezado[$j]]  }}</strong></td>
+                  <td style="color: #3FA435;text-align: center;"><strong>{{ $fila[$encabezado[$j]]  }}</strong></td>
                   @endif
               @else
                   <td style="text-align: center;">  {{$fila[$encabezado[$j]]}} </td>
@@ -196,7 +198,7 @@
                 @break 
             @endif                  
                   <td style="text-align: center;">
-                  <button class="btn btn-xs btn-danger" data-toggle="modal" data-placement="right"  data-placement="top"  title="Detalle Estudiante" data-nombree="{{$fila[$encabezado[2]]}}" data-definitiva="{{$encabezado[count($encabezado)-1]}}" data-nota="{{$fila[$encabezado[count($encabezado)-1]]}}"  data-target="#detalle">
+                  <button class="btn btn-xs btn-danger" data-toggle="modal" data-placement="right"  data-placement="top"  title="Detalle Estudiante" data-nombree="{{$fila[$encabezado[2]]}}" data-definitiva="{{$encabezado[count($encabezado)-1]}}" data-nota="{{$fila[$encabezado[count($encabezado)-1]]}}" data-iduser="{{$fila[$encabezado[0]]}}"  data-target="#detalle">
                   <i class="fa fa-eye" aria-hidden="true"> Detalle </i>
                   </button>
           </tr>  
@@ -207,30 +209,7 @@
     </div>
  
 
-<!----------Modal para mostrar el detalles del estudiante seleccionado -------------->
-         
 
-
-<div class="modal fade" id="detalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" id="cerrar2" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Detalles Estudiante </h4>
-        </div>
-
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="student" ></div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"  id="definitiva" ></div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  id="tabla" ></div>
-
-        <div class="modal-footer">
-          
-          <button type="button" id="cerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-    </div>
-  </div>
-</div>
-            <!--------------------------------->
  </div>
 </div>
       
@@ -249,6 +228,42 @@
 
    </div>
     </div>
+
+    <!----------Modal para mostrar el detalles del estudiante seleccionado -------------->
+         
+
+
+<div class="modal fade" id="detalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" id="cerrar2" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detalles Estudiante </h4>
+        </div>
+
+          <div class="modal-body">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="student" ></div>
+          <br>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"  id="definitiva" ></div>
+          <br>
+          <div id="tabla" ></div>
+
+          <div class="col-md-12 col-sm-12 col-xs-12" >
+              <div class="card">
+                  <div id="grafica" class="card-body">
+                
+                 </div>
+             </div>
+          </div>
+          <br>
+          </div>
+          <div class="modal-footer">
+          <button type="button" id="cerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+    </div>
+  </div>
+</div>
+            <!--------------------------------->
   
 <!-- fin footer content -->
 
@@ -257,6 +272,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    
     
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -268,6 +284,11 @@
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    <!--charts -->
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    
+
 
    <script type="text/javascript">
       $(function () {
@@ -296,12 +317,153 @@
     <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-   
+    
+
+
+<script type="text/javascript">
+  
+
+  $('#detalle').on('show.bs.modal',function (event) {
+console.log("inicio")
+      var button = $(event.relatedTarget) 
+
+ 
+      var nombree = button.data('nombree') 
+      var definitiva= button.data('definitiva')
+      var nota=button.data('nota')
+      var id=button.data('iduser')
+  
+      //var cabeza=button.data('cabeza')
+      
+  var modal=(this);
+  var body1 = document.getElementById("student");
+  var body2 = document.getElementById("definitiva");
+  var btncerrar=document.getElementById("cerrar");
+  var btnc2=document.getElementById("cerrar2");
+  var myTable=document.getElementById("tabla");
+  var grafico=document.getElementById("grafica");
+
+
+  var nomE = document.createElement("h3");
+  nomE.innerHTML = nombree;
+  body1.appendChild(nomE);
+
+//var notadef = document.createElement("h3"); 
+ //notadef.innerHTML=nota;
+ //if (nota>= '0' && nota<'3'){
+  //notadef.style.color="red"; 
+  //notadef.setAttribute('style', 'text-align: center;color:#F44336;font-size: 80px;');
+ //}else if ((nota>= '3' && nota<'4,5')||(nota>= '3' && nota<'4.5')){
+  //notadef.style.color='#e8a010';
+  //notadef.setAttribute('style', 'text-align: center;color:#E28821;font-size: 80px;')
+  //}else{
+ // notadef.style.color='green';
+  //notadef.setAttribute('style', 'text-align: center;color:#3FA435;font-size: 80px;')
+  //}
+ //  body2.appendChild(notadef)
+
+  //var def = document.createElement("h4") 
+  //def.innerHTML=definitiva
+  //def.setAttribute('style', 'text-align: center')
+  //body2.appendChild(def) 
+//tabla_de_miembros
+ var imp=[];
+ var her= document.getElementsByTagName('thead')[
+ 0].rows[0].cells;
+ for(i=4; i < (her.length) -1; i++ )
+ {
+ imp.push(document.getElementsByTagName('thead')[
+ 0].rows[0].cells[i].textContent)
+ }
+//console.log(imp)
+var bo=document.getElementsByTagName('tbody')[0].rows;
+var bo2=(document.getElementsByTagName('tbody')[0].rows[0].cells.length)-1;
+var imp2 = new Array(bo.length);
+ for(var k=0; k < bo.length; k++ )
+ {
+  if (id == document.getElementsByTagName('tbody')[0].rows[k].cells[0].textContent){
+    imp2[k] = new Array(bo2);
+  for ( var j = 4; j < bo2; j++) 
+  {
+    imp2 [k][j] =document.getElementsByTagName('tbody')[0].rows[k].cells[j].textContent
+  }
+  }
+ }
+  
+
+    let table = document.createElement('table');
+    table.classList.add('table', 'table-striped', 'table-bordered', 'align-middle', 'display', 'nowrap', 'table-hover', 'responsive');
+    let headerRow = document.createElement('tr');
+ 
+    imp.forEach(headerText => {
+        let header = document.createElement('th');
+        let textNode = document.createTextNode(headerText);
+        header.setAttribute('style','text-align: center ;')
+        header.appendChild(textNode);
+        headerRow.appendChild(header);
+    });
+ 
+    table.appendChild(headerRow);
+ 
+    imp2.forEach(emp => {
+        let row = document.createElement('tr');
+ 
+        Object.values(emp).forEach(text => {
+            let cell = document.createElement('td');
+            let textNode = document.createTextNode(text);
+
+            if (text.trim()>='0'&&text.trim()<'3,0') {
+            cell.setAttribute('style','text-align: center; color:#F44336;') 
+            }else if(text.replace(',','.')>=3 &&text.replace(',','.')<4.5){
+              cell.setAttribute('style','text-align: center;color:#E28821; ')
+            }else{
+              cell.setAttribute('style','text-align: center;color:#3FA435;')
+            }
+            
+            cell.appendChild(textNode);
+            row.appendChild(cell);
+        })
+ 
+        table.appendChild(row);
+    });
+ 
+    myTable.appendChild(table);
+
+// grafico
+
+
+//console.log(label)
+
+
+btncerrar.onclick = function() {
+close();
+ 
+};
+btnc2.onclick = function() {
+close(); 
+ 
+};
+
+function close(){
+body1.removeChild(nomE);
+//body2.removeChild(notadef)
+//body2.removeChild(def)
+myTable.removeChild(table);
+
+}
+});
+
+
+</script>
+
+
+
 
 <script type="text/javascript">
     /* Custom filtering function which will search data in column four between two values */
     $.fn.dataTable.ext.search.push(
         function( settings, data, dataIndex ) {
+          console.log('entro a funtion')
             var min = parseFloat( $('#min').val(), 0);
             var max = parseFloat( $('#max').val(), 0 );
             var e = document.getElementById("itemMateria");
@@ -322,7 +484,8 @@
             return false;
         }
     );
-     
+     var lastIndex = $('#tabla_de_miembros').find("tr").first().find("td").last().index();
+     console.log("tamaño de la tabla"+lastIndex);
     $(document).ready(function() {
         var table = $('#tabla_de_miembros').DataTable({
           info:false,
@@ -331,10 +494,16 @@
     {
     extend: 'pdf',
     text: 'PDF',
+     exportOptions: {
+                   columns: ':not(:last-child)',
+                },
     title: function () { return $('#nmateria').text(); },
   },{
     extend: 'excel',
     text: 'Excel',
+    exportOptions: {
+                   columns: ':not(:last-child)',
+                },
     title: function () { return $('#nmateria').text(); },
   }],
       language: {
@@ -378,113 +547,7 @@
     } );
     </script>
 
-    <script type="text/javascript">
-  
-  $('#detalle').on('show.bs.modal', function (event) {
 
-      var button = $(event.relatedTarget) 
-
- 
-      var nombree = button.data('nombree') 
-      var definitiva= button.data('definitiva')
-      var nota=button.data('nota')
-      //var cabeza=button.data('cabeza')
-      
-      var modal=(this);
-  var body1 = document.getElementById("student");
-  var body2 = document.getElementById("definitiva");
-  var btncerrar=document.getElementById("cerrar");
-  var btnc2=document.getElementById("cerrar2");
-  var myTable=document.getElementById("tabla");
-
-  var nomE = document.createElement("h3");
-  nomE.innerHTML = nombree;
-  body1.appendChild(nomE);
-
-  
-  var notadef = document.createElement("h3"); 
- notadef.innerHTML=nota;
- if (nota>= '0' && nota<'3'){
-  //notadef.style.color="red"; 
-  notadef.setAttribute('style', 'text-align: center;color:red');
- }else if (nota>= '3' && nota<'4,5'){
-  //notadef.style.color='#e8a010';
-  notadef.setAttribute('style', 'text-align: center;color:#e8a010')
-  }else{
- // notadef.style.color='green';
-  notadef.setAttribute('style', 'text-align: center;color:green')
-  }
-   body2.appendChild(notadef)
-
-  var def = document.createElement("h4") 
-  def.innerHTML=definitiva
-  def.setAttribute('style', 'text-align: center')
-  body2.appendChild(def) 
-
-//tabla_de_miembros
-//
-
- 
- 
-let employees = [
-    { name: 'James', age: 21, country: 'United States' },
-    { name: 'Rony', age: 31, country: 'United Kingdom' },
-    { name: 'Peter', age: 58, country: 'Canada' },
-    { name: 'Marks', age: 20, country: 'Spain' }
-]
- 
-let headers = ['Name', 'Age', 'Country'];
- 
-
-    let table = document.createElement('table');
-    let headerRow = document.createElement('tr');
- 
-    headers.forEach(headerText => {
-        let header = document.createElement('th');
-        let textNode = document.createTextNode(headerText);
-        header.appendChild(textNode);
-        headerRow.appendChild(header);
-    });
- 
-    table.appendChild(headerRow);
- 
-    employees.forEach(emp => {
-        let row = document.createElement('tr');
- 
-        Object.values(emp).forEach(text => {
-            let cell = document.createElement('td');
-            let textNode = document.createTextNode(text);
-            cell.appendChild(textNode);
-            row.appendChild(cell);
-        })
- 
-        table.appendChild(row);
-    });
- 
-    myTable.appendChild(table);
-
-
-
-
-btncerrar.onclick = function() {
-close();
- console.log('entro')
-};
-btnc2.onclick = function() {
-close(); 
- console.log('entro')
-};
-
-function close(){
-body1.removeChild(nomE);
- body2.removeChild(notadef)
- body2.removeChild(def)
-   myTable.removeChild(table);
-}
-});
-
-
-</script>
-
+    
 </body>
 </html>
