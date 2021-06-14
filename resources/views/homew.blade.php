@@ -76,6 +76,15 @@
           <li><a class="nav-link scrollto" target="_blank" href="https://ww2.ufps.edu.co/">UFPS</a></li>
           <li><a class="nav-link scrollto " target="_blank" href="https://ingsistemas.cloud.ufps.edu.co/">Programa académico</a></li>
           <li><a class="nav-link scrollto" data-toggle="modal" data-target="#create" href="#">Registrate docente</a></li>
+          <li class="dropdown"> <a href="#"><span>Equipo</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a target="_blank" href="https://www.linkedin.com/in/marco-antonio-adarme-j-114723115/">Marco Adarme</a></li>
+              <li><a target="_blank" href="https://www.linkedin.com/in/andr%C3%A9s-orlando-orduz-grimaldo-b33658114">Andres Grimaldo</a></li>
+              <li><a target="_blank" href="https://www.linkedin.com/in/jose-jair-llanes-avellaneda-39b4771b2">Jair Llanes</a></li>
+              <li><a target="_blank" href="https://www.linkedin.com/in/wilson-fernandez-1a481a214/">Wilson Fernandez</a></li>
+              <li><a target="_blank" href="https://www.linkedin.com/in/jhonatan-ramirez-a25168193">Jhonatan Ramirez</a></li>
+            </ul>
+          </li>
               </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -131,7 +140,7 @@
   <main id="main">
 
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
+    <!--section id="team" class="team section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -220,7 +229,7 @@
         </div>
 
       </div>
-    </section><!-- End Team Section -->
+    </section --><!-- End Team Section -->
 
 <!----------Modal para crear los docentes-------------->
          

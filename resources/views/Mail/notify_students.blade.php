@@ -25,7 +25,7 @@
    
     <h1>Notificación de carga de notas.</h1>
      
-      <p style="text-align: justify;" >Se han piblicado notas de la materia : {{$notificacion['mat']}} con el codigo {{$notificacion['cod']}}.
+      <p style="text-align: justify;" >Se han publicado notas de la materia : {{$notificacion['mat']}} con el codigo {{$notificacion['cod']}}.
       </p>
 
      <p  style="text-align: justify;">{{$notificacion['coment']}}
