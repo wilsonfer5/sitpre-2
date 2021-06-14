@@ -289,13 +289,60 @@
 </div>
             <!--------------------------------->
 
+<!----------Modal para notificar a los estudiantes la carga de la materia-------------->
+         
 
+<div class="modal fade" id="notificar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Notificar Estudiantes</h4>
+      </div>
+       <form action="{{url('notificar_estudiantes')}}"  method="post" id="f_editar_usuario"  class="formentrada"  >
+                
+        <div class="modal-body">
+            <div class="form-group">   
+            <div class="input-group ">
+              <div class="col-lg-6 col-md-6 col-sm-6">
+              <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> 
+              <input type="hidden" class="form-control" name="murl" id="murl" >
+                </div>
+            </div>
+                </div>
+        <div class="form-group ">
+          <div class="input-group ">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label for="item">Materia</label>
+              <input type="text" size="100%" readonly="readonly" class="form-control " name="mat" id="mat"  required>
+              </div>
+              <div class=" col-lg-6 col-md-6 col-sm-6" >
+              <label for="nota">Código</label>
+              <input type="text" size="100%" readonly="readonly" class="form-control " name="cod" id="cod"  required>
+                </div>
+            </div>
+          </div>
+              <div class="form-group">
+                <input type="hidden" class="form-control" name="userurl" id="userurl" > 
+              <label for="coment">Comentario</label>
+              <textarea  class="form-control " name="coment" id="coment" cols="25" rows="10"  required > </textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger">Notificar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+            <!--------------------------------->
 
             <!--------------------------------->
 
 
      
-            <div class="row">
+            <div class="">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                  
@@ -348,7 +395,9 @@
                        <i class="fa fa-trash" aria-hidden="true"></i>
                        </a>
                         <!-- Notificar -->
-                        <a href="" onclick="return confirm('¿Esta seguro de notificar a los Estudiantes de la materia la carga sus  notas?')" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Notificar Estudiantes">
+                        <a href="" class="btn btn-xs btn-danger" data-toggle="modal" data-placement="top" title="Notificar Estudiantes" data-target="#notificar" 
+                        data-userurl="{{request()->url()}}"
+                        data-murl="{{$fila->url_drive}}"data-codigo="{{ $fila->code }}" data-nomm="{{ $fila->name }}">
                        <i class="fa fa-mail-reply-all" aria-hidden="true"></i>
                        </a>
                 </tr>
@@ -455,6 +504,30 @@
       modal.find('.modal-body #group').val(grupo[1]);
       modal.find('.modal-body #url_drive').val(url_drive);
       modal.find('.modal-body #id_materia').val(id_subjects);
+})
+
+ 
+</script>
+
+<script>
+  
+  $('#notificar').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+      var mate = button.data('nomm'); 
+      var codi = button.data('codigo'); 
+      var userurl = button.data('userurl');
+      var murl= button.data('murl');
+      var msm="";
+      
+        
+      var modal = $(this)
+      
+      modal.find('.modal-body #mat').val(mate);
+      modal.find('.modal-body #cod').val(codi);
+      modal.find('.modal-body #userurl').val(userurl);
+      modal.find('.modal-body #murl').val(murl);
+      
+     
 })
 
  

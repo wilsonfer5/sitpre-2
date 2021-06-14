@@ -13,6 +13,11 @@ use Google_Client;
 use Google_Service_Drive;
 use League\Csv\Reader;
 use League\Csv\Statement;
+use Illuminate\Mail\Mailable;
+use Mail;
+use App\Mail\NotificarEstudiantes;
+
+
 
 class TeacherController extends Controller {
     //Constructor de la clase
@@ -135,7 +140,7 @@ class TeacherController extends Controller {
         try{
         //Se valida que la url el host sea docs.google si no se retorna url no valida
         if(parse_url($urldrive, PHP_URL_HOST)!="docs.google.com"){
-           var_dump('elseiftry');
+          
             return false;
         }
       
@@ -179,23 +184,23 @@ class TeacherController extends Controller {
          }
          // se empieza a preguntar si el encabezado cumple con la estructura
          if(strcasecmp($newarray[0],"id")!=0){
-           var_dump('elseid');
+           
             return false;
             }
             
 
             if(strcasecmp($newarray[1],"codigo")!=0){
-              var_dump('elsecodigo');
+             
               return false;
           }
             
             if(strcasecmp($newarray[2],"nombres")!=0){
-                var_dump('elsenombres');
+                
                 return false;
             }
 
             if(strcasecmp($newarray[3],"correo")!=0){
-                var_dump('elsecorreo');
+                
             } 
             
             $id=$newarray[0];
@@ -206,11 +211,11 @@ class TeacherController extends Controller {
                     return true;
                  }
               }
-              var_dump('else1');
+              
               return false;   
                
     }else{
-           var_dump('else2');
+           
             return false;
         }
 
@@ -511,6 +516,111 @@ class TeacherController extends Controller {
         }
      
      } 
+
+public function notificar_estudiantes(Request $request){
+
+$url=$request->input('murl');
+
+$array=$this->tomarCorreosMateria($url);
+
+if (!empty($array)){
+//var_dump($array);
+ for ($i =  0; $i < count($array) ; $i++ ) {
+
+    $comentario = new NotificarEstudiantes($request->all());
+    Mail::to($array[$i])->send($comentario);
+     
+ }
+   $request->session()->flash('alert-success', 'Envio de Notificacion Exitosa !!');     
+ return redirect()->to($request->input('userurl').""); 
+}else{
+ $request->session()->flash('alert-danger', 'Ocurrio un error!! el comentario no puede estar vacio.');
+ return redirect()->to($request->input('userurl')."");  
+        
+        }
+  
+}
+
+public function tomarCorreosMateria($murl){
+try{
+ if(parse_url($murl , PHP_URL_HOST)!="docs.google.com"){
+            return false;
+          }
+          
+          //Divido el url 
+          $arrayurl = explode("/", $murl);
+          
+          if(!isset($arrayurl[5])){
+            return false;
+         }
+          $keydrvie=$arrayurl[5];
+          $client = new Google_Client();
+          putenv('GOOGLE_APPLICATION_CREDENTIALS=../public_html/googledrive.json');
+          $client->useApplicationDefaultCredentials();
+          $client->addScope(Google_Service_Drive::DRIVE);
+    
+          $driveService = new Google_Service_Drive($client);
+          $fileID = $keydrvie;
+          
+          $response = $driveService->files->export($fileID, 'text/csv', array(
+                'alt' => 'media'));
+           
+          $content = $response->getBody()->getContents();
+    
+          $reader = Reader::createFromString($content, 'r');
+          
+          //Se obtiene el encabezado en la fila 1 si no tiene dicho encabezado se envia un mensaje
+        if($reader->setHeaderOffset(0)){
+          $reader->skipEmptyRecords();
+          $records = (new Statement())->process($reader);
+
+          foreach($records->getHeader() as $value){
+            $newarray [] =$value;
+             }
+             // se empieza a preguntar si el encabezado cumple con la estructura
+                if(strcasecmp($newarray[0],"id")!=0){
+                return false;
+                }
+    
+                if(strcasecmp($newarray[1],"codigo")!=0){
+                  return false;
+              }
+                
+                if(strcasecmp($newarray[2],"nombres")!=0){
+                    return false;
+                }
+    
+                if(strcasecmp($newarray[3],"correo")!=0){
+                    return false;
+                }else{
+                
+                $id=$newarray[0];
+               $correo=$newarray[3];
+               $array = json_encode($records);
+               $jsonarray=json_decode($array,true);
+               foreach($jsonarray as $valor){
+            //Se relaiza la validacion para obtener lo que se encuentra en las columnas 0 y 3 para obtener los correos.
+                if(strcasecmp($valor[$id],"observaciones")==0){
+                break;
+                }else{
+                    if($valor[$correo]!=""){
+                      $datos2[]=$valor[$correo];  
+                    }
+                }
+                   }
+                   //dd($datos2);
+                 return $datos2;
+                }
+              }else{
+                return false;
+            }
+          }catch(\Exception $e){
+            return false;
+        }
+
+}
+
+
 
     public function prueba(){
        echo('hola mundo');

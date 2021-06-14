@@ -44,7 +44,7 @@
      <br>
      <br>
      <ul>
-     <li><a href="http://notas.madarme.co">Ingreso a la aplicación</a></li>
+     <li><a href="http://notas.madarme.co/sitpre_nuevo/public_html/">Ingreso a la aplicación</a></li>
      </li>
      </ul>
      <br><br>

@@ -53,6 +53,7 @@ Route::post('editar_materia', 'TeacherController@editar_materia');
 Route::post('crear_materia', 'TeacherController@crear_materia');
 Route::get('eliminar_materia/{id?}', 'TeacherController@eliminar_materia');
 Route::get('detalle_materia/{id?}', 'TeacherController@detalle_materia');
+Route::post('notificar_estudiantes', 'TeacherController@notificar_estudiantes');
 //Route::get('prueba', 'TeacherController@prueba');
 
 

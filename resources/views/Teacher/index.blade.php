@@ -79,7 +79,7 @@
 
             
 
-            <div class="row">
+            <div class="">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                    <h2 align="center">Bienvenido</h2>
@@ -173,8 +173,8 @@
   
   <div id="manualexcel" class="col-md-6 col-sm-6 col-xs-12 " align="center" >
     <h3  align="center"> Manual Crear hoja de Google Sheet <a target="_blank" href="https://docs.google.com/spreadsheets/d/15yoJh8hKivyu_mrB-fn90dd4J7z4gN02BZ9OcwXn0HI/edit?usp=sharing">"Ejemplo clic aquí"</a> </h3>
-    <a target="_blank" href="ManuaDocente-SITPRE.pdf" align="right"><i class="fa fa-external-link">ver PDF</i></a>
-    <embed src="ManuaDocente-SITPRE.pdf" type="application/pdf" width="100%" height="600px" />
+    <a target="_blank" href="ManuaDoc-google-sheets-SITPRE.pdf" align="right"><i class="fa fa-external-link">ver PDF</i></a>
+    <embed src="ManuaDoc-google-sheets-SITPRE.pdf" type="application/pdf" width="100%" height="600px" />
   </div>
   <div id="manualprofe" class="col-md-6 col-sm-6 col-xs-12 " align="center" >
     <h3 align="center"> Manual del Docente </h3>
