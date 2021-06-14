@@ -37,7 +37,7 @@
             </a>
             </div>
 
-              <ul class="nav navbar-nav navbar-right">
+              <ul class="nav navbar-nav ">
                 <li class="" >
                   <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:white;">
                     <img src="{{ auth()->user()->avatar }}" alt="">{{ auth()->user()->name }}
@@ -82,11 +82,11 @@
             <div class="">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                   <h2 align="center">Bienvenido</h2>
+                   <h1 align="center" style=" color: #aa1916 ;" ><strong>Bienvenido</strong> </h1>
                   <div class="x_title">
                    
-                    <h3 align="center" ><strong> SITPRE - </strong>Sistema de información para el manejo de terceros previos -
-                    </h3>
+                    <h4 align="center" ><strong> SITPRE - </strong>Sistema de información para el manejo de terceros previos -
+                    </h4>
                     
                     <div class="clearfix"></div>
 
@@ -95,7 +95,7 @@
 <div class="content-md container">
             <div class="row margin-b-20">
                 <div class="col-sm-6">
-                    <h2> - Qué es SITPRE? - </h2>
+                    <h3>  ¿Qué es SITPRE?  </h3>
                 </div>
             </div>
             <!--// end row -->
@@ -104,12 +104,12 @@
           <div class=" col-sm-7 sm-margin-b-50">
               <div class="margin-b-30">
                     <br>
-                     <p style="font-size: 17px; text-align: justify;">El sistema de información SITPRE, Es una aplicación Web planteada para la gestión, de las terceras notas.
+                     <p style="font-size: 15px; text-align: justify;">El sistema de información SITPRE, Es una aplicación Web planteada para la gestión, de las terceras notas.
                       </p>
                     </div>
 <div class="list-icon no-margin-bottom" >
   <ul>
-  <li><i class="fa fa-check-square-o" ></i> Permitir al docente registrar sus notas por medio de las hojas de cálculo de Google Drive</li>
+  <li ><i class="fa fa-check-square-o" ></i> Permitir al docente registrar sus notas por medio de las hojas de cálculo de Google Drive</li>
   <li><i class="fa fa-check-square-o" ></i> Crear un medio seguro y privado donde el estudiante permita visualizar sus notas</li>
   <li><i class="fa fa-check-square-o" ></i> Permite autenticar a los clientes por medio de la cuenta institucional</li>
   
@@ -128,13 +128,11 @@
 <div class="content-md container">
       <div class="row margin-b-20">
           <div class="col-sm-6">
-              <h2>- Ventajas -</h2>
-              <h3 style="font-size: 17px; "> Con SITPRE.
-            </h3>
+              <h3> Ventajas </h3>
           </div>
       </div>
       <!--// end row -->
-<div class="row">
+<div class="">
 <div class=" col-sm-6 ">                 
 <div class="list-icon">
   <ul>
@@ -162,7 +160,7 @@
 
 <div class="content" align="center" >
   <div id="mexcel" class="col-md-4 col-sm-4 col-xs-12 " > <button class="btn btn-danger" onclick="mexcel()" > <i class="fa fa-book" > guia formato Excel </i>   </button> </div>
-  <div id="vprofe" class="col-md-4 col-sm-4 col-xs-12 " > <button class="btn btn-danger" onclick="mvideo()" > <i class="fa fa-play" > Video Tutorial </i>  </button> </div>
+  <div href="videoprofe" id="vprofe" class="col-md-4 col-sm-4 col-xs-12 " > <button class="btn btn-danger" onclick="mvideo()" > <i class="fa fa-play" > Video Tutorial </i>  </button> </div>
   <div id="mprofe" class="col-md-4 col-sm-4 col-xs-12 " > <button class="btn btn-danger" onclick="mprofe()" > <i class="fa fa-book" > guia Docente  </i></button> </div>
   
 </div>
@@ -190,6 +188,38 @@
 
 </div>
 
+<div class="modal fade" id="politicas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title" id="myModalLabel">Politicas de USO</h4>
+      </div>
+       <form action="{{ url('politicas_teacher') }}"  method="post" id="f_editar_usuario"  class="formentrada"  >
+                
+        <div class="modal-body">
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+            <div> <h1> Terminos y Condiciones SITPRE</h1></div> 
+
+            <div>
+               <p>
+              Para el uso de la plataforma SITPRE debes aceptar las políticas de tratamiento y privacidad de datos.
+               </p>
+            </div>
+            <div> 
+              <p>puedes revisar</p><a target="_blank" href="Politicas SITPRE.pdf">Políticas!</a></div>
+              
+        </div>
+        <div class="modal-footer">
+          <label>He leído y acepto los términos y condiciones. </label>
+          <button type="submit" class="btn btn-danger">Aceptar</button>
+          <!--button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button-->
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+            <!--------------------------------->
 
                   <!--div class="x_content">
                       <img src="img/logo2.svg"  class="site_home">
@@ -224,6 +254,15 @@
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
 
+    <script type="text/javascript">
+      var poli= '<?php echo(auth()->user()->politicas)?>';
+      //console.log(poli == undefined || poli == 0);
+      if((typeof poli == undefined)||(poli == 0)||(poli == " ")){
+        $('#politicas').modal();
+
+      }
+    </script>
+
     <script>
 
 var x = document.getElementById("manualexcel");
@@ -236,6 +275,9 @@ z.style.display="none";
 function mexcel(){
   if (x.style.display === "none") {
     x.style.display = "block";
+    y.style.display = "none";
+    z.style.display = "none";
+
   } else {
     x.style.display = "none";
   }
@@ -245,6 +287,8 @@ function mvideo() {
   
   if (y.style.display === "none") {
     y.style.display = "block";
+    x.style.display = "none";
+    z.style.display = "none";
   } else {
     y.style.display = "none";
   }
@@ -254,6 +298,9 @@ function mvideo() {
   
   if (z.style.display === "none") {
     z.style.display = "block";
+    x.style.display = "none";
+    y.style.display = "none";
+
   } else {
     z.style.display = "none";
   }

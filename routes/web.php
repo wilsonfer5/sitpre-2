@@ -42,6 +42,7 @@ Route::get('nota_materia/{id?}', 'StudentController@notas_materia');
 Route::get('nota_materia_listado/{id?}', 'StudentController@notas_materias_grupo');
 Route::get('video_student', 'StudentController@video_player');
 Route::post('enviar_comentario', 'StudentController@enviar_comentario');
+Route::post('politicas', 'StudentController@aceptar_politicas');
 
 
 //Rutas para profesor
@@ -54,6 +55,8 @@ Route::post('crear_materia', 'TeacherController@crear_materia');
 Route::get('eliminar_materia/{id?}', 'TeacherController@eliminar_materia');
 Route::get('detalle_materia/{id?}', 'TeacherController@detalle_materia');
 Route::post('notificar_estudiantes', 'TeacherController@notificar_estudiantes');
+Route::post('politicas_teacher', 'TeacherController@aceptar_politicas');
+
 //Route::get('prueba', 'TeacherController@prueba');
 
 

@@ -99,6 +99,7 @@ class LoginController extends Controller
             $newUser->google_id       = $user->id;
             $newUser->avatar          = $user->avatar;
             $newUser->tipo_usuario    = null;
+            $newUser->politicas       = null;
            
             auth()->login($newUser, true);
 

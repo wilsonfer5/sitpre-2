@@ -123,7 +123,7 @@
 
 
         <!--a href="#about" class="btn-get-started scrollto">Iniciar Sesión</a-->
-        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>¿Qué es SITPRE?</span></a>
+        <a href="https://www.youtube.com/watch?v=XTQVf1PaicQ" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>¿Qué es SITPRE?</span></a>
       </div>
     </div>
   </section><!-- End Hero -->

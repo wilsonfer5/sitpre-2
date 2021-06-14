@@ -335,9 +335,12 @@ html , body{
 .nav-sm li li span.fa {
     display: inline-block
 }
+/*#dd4b39
+   #aa1916
+ */
 .nav_menu {
     float: left;
-    background: #dd4b39;
+    background: #aa1916;
     border-bottom: 1px solid #D9DEE4;
     margin-bottom: 10px;
     width: 100%;
@@ -371,7 +374,7 @@ body .container.body .right_col {
 .nav_title {
     width: 230px;
     float: left;
-    background: #dd4b39;
+    background:  #aa1916;
     border-radius: 0;
     height: 57px
 }
@@ -663,7 +666,7 @@ h3,
     
 }
 a {
-    color: #dd4b39;
+    color:  #aa1916;
     text-decoration: none
 }
 a,
@@ -739,7 +742,7 @@ a:focus {
 
 .nav.side-menu>li:hover{
     color: white !important;
-    background:#dd4b39
+    background: #aa1916;
 }
 
 
@@ -756,7 +759,10 @@ a:focus {
 }*/
 
 
-
+a:focus, a:hover {
+    color: #e6726f;
+    text-decoration: underline;
+}
 
 .nav.side-menu>li>a {
     margin-bottom: 6px
@@ -837,7 +843,7 @@ a:focus {
 }
 .nav.side-menu>li.active>a {
     text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
-    background:#dd4b39;
+    background: #aa1916;
     color:white;
     
     /*background: linear-gradient(#e06d6d, #fafcff), #2A3F54;
@@ -1739,7 +1745,7 @@ span.right {
     font-size: 17px;
     display: block;
     float: left;
-    background: #dd4b39;
+    background:  #aa1916;
     cursor: pointer;
 }
 .sidebar-footer a:hover {
@@ -4319,7 +4325,7 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
   .list-icon ul li {
       list-style-type:none;
       position:relative;
-      font-size:16px;
+      font-size:15px;
       padding-left:30px;
       margin-bottom:10px;
     }

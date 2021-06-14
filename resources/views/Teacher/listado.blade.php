@@ -34,62 +34,6 @@
 
   <body class="nav-md">
  
-    <div class="container body">
-      <div class="main_container">
-        <!-- div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-            <a  href="/teacher">
-            <img src="img/logo3.svg"  class="site_title">
-            </a>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <!--div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="{{ auth()->user()->avatar }}" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Bienvenido,</span>
-                <h6 style="color:black">{{ auth()->user()->name }}</h6>
-              </div>
-              <div class="clearfix"></div>
-            </div>
-            <!-- /menu profile quick info -->
-
-            <!--br />
-
-            <!-- sidebar menu -->
-            <!-- div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-               
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-book"></i> Materia <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{ url("listado_materias")}}">Administrar Materias</a></li>
-                    </ul>
-                  </li>
-                   <li><a href="{{ url("video")}}"><i class="fa fa-youtube-play "></i>  Ayuda<span class="label label-danger pull-right">Tutorial</span></a></li>
-               
-                </ul>
-              </div>
-             
-            </div>
-            <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons -->
-            <!--div class="sidebar-footer hidden-small">
-              
-              <a data-toggle="tooltip" data-placement="top" title="cerrar sesión" href="{{ url('homew/google/logout') }}" 
-              style="width:100%;color:white">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
-          </div>
-        </div>
 
        <!-- top navigation -->
         <div class="top_nav">
@@ -101,7 +45,7 @@
             </a>
             </div>
 
-              <ul class="nav navbar-nav navbar-right">
+              <ul class="nav navbar-nav ">
           
                 <li class="" >
                   <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:white;">

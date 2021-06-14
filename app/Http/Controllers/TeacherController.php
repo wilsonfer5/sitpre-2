@@ -619,11 +619,20 @@ try{
         }
 
 }
-
+public function aceptar_politicas(Request $request){
+      
+      $id=auth()->user()->id;
+      $estudiante=User::where('id', $id)->first();
+      $estudiante->politicas=1;
+      $estudiante->save();
+   return redirect()->to('/teacher');
+    }
 
 
     public function prueba(){
        echo('hola mundo');
     }
+
+
 
     }

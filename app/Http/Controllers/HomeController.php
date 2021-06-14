@@ -43,6 +43,7 @@ class HomeController extends Controller
         $newUser->avatar          = null;
         $newUser->tipo_usuario    = 2;
         $newUser->estado          = 0;
+        $newUser->politicas       = null;
         if($newUser->save()){
             $request->session()->flash('alert-success', 'Usuario creado de manera exitosa, espere la confirmación por correo electronico y activación de su usuario!!');
             return redirect()->to('/');

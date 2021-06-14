@@ -26,6 +26,8 @@ class StudentController extends Controller
       //listado de materias 
       public function listado_materias(){
         //Devuelve el listado de todas las materias creadas
+       // $usuario = User::where('email', auth()->user()->email)->first();
+        //var_dump($usuario->politicas);
         $listado =Subject::orderBy('name', 'ASC')->get();
         return view('Student.index', ['listado' => $listado]);
        
@@ -411,7 +413,14 @@ class StudentController extends Controller
      
      } 
 
-
+ public function aceptar_politicas(Request $request){
+      
+      $id=auth()->user()->id;
+      $estudiante=User::where('id', $id)->first();
+      $estudiante->politicas=1;
+      $estudiante->save();
+   return redirect()->to('/student');
+    }
     
  
 }

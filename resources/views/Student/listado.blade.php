@@ -56,7 +56,8 @@ table td {
                     <span class=" fa fa-angle-down" style="color:white"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">Help</a></li>
+                   <li><a target="_blank" href="ManuaEstudiante-SITPRE.pdf">
+                      <i class="fa fa-book pull-right"></i> Manual</a></li>
                     <li><a href="{{ url('homew/google/logout') }}"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
                   </ul>
                 </li>
@@ -124,7 +125,8 @@ table td {
                           <td>
                         @foreach($observaciones as $fila)
                         @if(!empty($encabezado[$i])&&stristr($fila,$encabezado[$i])==$fila)
-                            <strong class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="{{$fila}}"> {{$encabezado[$i]}}</strong>
+                            <strong class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="{{$fila}}">
+                            <i class="fa fa-check" ></i> {{$encabezado[$i]}}</strong>
                           @endif
                           @endforeach
                           </td>
