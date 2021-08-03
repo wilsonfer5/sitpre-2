@@ -117,13 +117,13 @@
         Usted seguirá manteniendo el control de los datos a través de su archivo original.  </h5> <br>
         <div class="d-flex">
            @if (Auth::check()&&Auth::user()->tipo_usuario==1)
-            <a href="/admin" data-toggle="" data-target="" class="btn btn-danger btn-sm " > 
+            <a href="admin" data-toggle="" data-target="" class="btn btn-danger btn-sm " > 
             <i class="fa fa-user"></i> admin </a>
             @elseif(Auth::check()&&Auth::user()->tipo_usuario==2)    
-             <a href="/teacher" data-toggle="" data-target="" class="btn btn-danger btn-sm " > 
+             <a href="teacher" data-toggle="" data-target="" class="btn btn-danger btn-sm " > 
             <i class="fa fa-user"></i> docente </a>  
             @elseif(Auth::check()&&Auth::user()->tipo_usuario==null)    
-             <a href="/student" data-toggle="" data-target="" class="btn btn-danger btn-sm " > 
+             <a href="student" data-toggle="" data-target="" class="btn btn-danger btn-sm " > 
             <i class="fa fa-user"></i> estudiante </a>           
             @else
              <a href="#" class="btn-get-started scrollto" data-toggle="modal" data-target="#login" class="btn btn-danger btn-sm " > 

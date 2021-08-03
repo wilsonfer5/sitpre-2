@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Subject;
+use App\Favorite;
 use App\Http\Requests\CreateMessageRequest;
 use App\User;
 use Google_Client;
@@ -28,8 +29,12 @@ class StudentController extends Controller
         //Devuelve el listado de todas las materias creadas
        // $usuario = User::where('email', auth()->user()->email)->first();
         //var_dump($usuario->politicas);
-        $listado =Subject::orderBy('name', 'ASC')->get();
-        return view('Student.index', ['listado' => $listado]);
+        //
+        $favoritas=Subject::rightJoin('favorites', 'favorites.id_materia', '=', 'subjects.id')->where('favorites.id_estudiante','=',auth()->user()->id)->select('subjects.id','subjects.code','subjects.name','subjects.type','subjects.url_drive','subjects.user_id')->orderBy('name','ASC')->get();
+
+        $listado=Subject::whereNotIn('subjects.id',function ($query) { $query->select('id_materia')->from('favorites')->Where('id_estudiante', '=',auth()->user()->id);})->get();
+        //$listado =Subject::orderBy('name', 'ASC')->get();
+        return view('Student.index', ['listado' => $listado,'favoritas'=>$favoritas]);
        
     }
 
@@ -160,7 +165,7 @@ class StudentController extends Controller
         $observaciones=$this->obtener_observaciones($materia);
         if($listado2&&$encabezado&&$observaciones){
          $listado =Subject::orderBy('name', 'ASC')->get();
-        return view('Student.listado', ['listado' => $listado,'observaciones'=>$observaciones,'nombre_materia'=>$materia->name.'-'.$grupo[1]],['listado2' => $listado2,'encabezado'=>$encabezado,'nombre_docente'=>$docente->name,'email_docente'=>$docente->email]);
+        return view('Student.listado', ['listado' => $listado,'observaciones'=>$observaciones,'nombre_materia'=>$materia->name.'-'.$grupo[1].'-'.$materia->type],['listado2' => $listado2,'encabezado'=>$encabezado,'nombre_docente'=>$docente->name,'email_docente'=>$docente->email]);
         }
         
         if($listado2==0){
@@ -422,5 +427,31 @@ class StudentController extends Controller
    return redirect()->to('/student');
     }
     
+    public function agregar_favorita($id,Request $request){
+      $newfavorite                  = new Favorite;
+      $newfavorite->id_materia      =(int)$id;
+      $newfavorite->id_estudiante   =auth()->user()->id;
+     if($newfavorite->save()){
+
+      $request->session()->flash('alert-info', 'Materia agregada a Favoritos Exitosamente!!');
+      return redirect()->to('/student');
+    }else{
+      $request->session()->flash('alert-danger', 'No es posible agregar a favoritos!!');
+      return redirect()->to('/student');
+    }
+    }
+
+    public function eliminar_favorita($id,Request $request){
+      $elimFav= Favorite::where('id_materia', $id)->where('id_estudiante','=',auth()->user()->id)->first();
+      //var_dump($elimFav);
+     if($elimFav->delete()){
+
+      $request->session()->flash('alert-info', 'Materia Eliminada de tus Favoritas Exitosamente!!');
+      return redirect()->to('/student');
+    }else{
+      $request->session()->flash('alert-danger', 'No es posible eliminar de favoritos!!');
+      return redirect()->to('/student');
+    }
+    }
  
 }

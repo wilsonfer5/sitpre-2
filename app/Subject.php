@@ -20,7 +20,7 @@ class Subject extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'code', 'url_drive','user_id',
+        'name', 'code','type','url_drive','user_id',
     ];
 
    

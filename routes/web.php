@@ -41,6 +41,8 @@ Route::get('/student', 'StudentController@listado_materias');
 Route::get('nota_materia/{id?}', 'StudentController@notas_materia');
 Route::get('nota_materia_listado/{id?}', 'StudentController@notas_materias_grupo');
 Route::get('video_student', 'StudentController@video_player');
+Route::get('agregar_favorita/{id?}','StudentController@agregar_favorita');
+Route::get('eliminar_favorita/{id?}','StudentController@eliminar_favorita');
 Route::post('enviar_comentario', 'StudentController@enviar_comentario');
 Route::post('politicas', 'StudentController@aceptar_politicas');
 

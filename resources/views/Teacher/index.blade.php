@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>SITPRE - Manejo de terceros previos</title>
+   <title>SITPRE - Manejo de notas</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -31,12 +31,9 @@
         <div class="top_nav">
           <div class="nav_menu">
             <nav>
-              <div class="navbar nav_title" style="border: 0;">
-            <a  href="teacher">
+            <a class="navbar nav_title"  href="{{url('teacher')}}">
             <img src="img/logo3.svg"  class="site_title">
             </a>
-            </div>
-
               <ul class="nav navbar-nav ">
                 <li class="" >
                   <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:white;">
@@ -44,7 +41,6 @@
                     <span class=" fa fa-angle-down" style="color:white"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">Help</a></li>
                     <li><a href="{{ url('homew/google/logout') }}"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
                   </ul>
                 </li>
@@ -56,6 +52,13 @@
                       <li><a href="{{ url("listado_materias")}}">Administrar Materias </a></li>
                      </ul>
                   </li>
+                  <li class="">
+                <a class=" dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ><i class="fa fa-thumbs-up "></i> Manuales <span class=" fa fa-angle-down" ></span></a>
+                <ul class="dropdown-menu  pull-right" >
+              <li><a target="_blank" href="{{url('ManuaDoc-google-sheets-SITPRE.pdf')}}"><i class="fa fa-file pull-right"></i>Crear Google Sheets </a></li>
+              <li><a target="_blank" href="{{url('ManuaDocente-SITPRE.pdf')}}"><i class="fa fa-file pull-right"></i>Guia Docente</a></li> <li><a target="_blank" href="https://docs.google.com/spreadsheets/d/15yoJh8hKivyu_mrB-fn90dd4J7z4gN02BZ9OcwXn0HI/edit?usp=sharing"><i class="fa fa-link pull-right"></i>Formato Goolge Sheets</a></li> 
+               </ul>
+              </li>
               </ul>
             </nav>
           </div>
@@ -85,7 +88,7 @@
                    <h1 align="center" style=" color: #aa1916 ;" ><strong>Bienvenido</strong> </h1>
                   <div class="x_title">
                    
-                    <h4 align="center" ><strong> SITPRE - </strong>Sistema de información para el manejo de terceros previos -
+                    <h4 align="center" ><strong> SITPRE </strong>- Sistema de información de manejo de notas -
                     </h4>
                     
                     <div class="clearfix"></div>
@@ -104,14 +107,15 @@
           <div class=" col-sm-7 sm-margin-b-50">
               <div class="margin-b-30">
                     <br>
-                     <p style="font-size: 15px; text-align: justify;">El sistema de información SITPRE, Es una aplicación Web planteada para la gestión, de las terceras notas.
+                     <p style="font-size: 15px; text-align: justify;">El sistema de información SITPRE, Es una aplicación Web planteada para la publicación de notas que tenga disponible en una hoja de google sheet.  Principalmente usado para las notas de terceros previos, no obstante Ud puede personalizar el nombre de la materia y publicar resultados de cualquier tipo de prueba. El sistema le permite crear todas las materias que ud necesite, siempre y cuando el código esté disponible.
                       </p>
                     </div>
 <div class="list-icon no-margin-bottom" >
   <ul>
-  <li ><i class="fa fa-check-square-o" ></i> Permitir al docente registrar sus notas por medio de las hojas de cálculo de Google Drive</li>
-  <li><i class="fa fa-check-square-o" ></i> Crear un medio seguro y privado donde el estudiante permita visualizar sus notas</li>
-  <li><i class="fa fa-check-square-o" ></i> Permite autenticar a los clientes por medio de la cuenta institucional</li>
+  <li ><i class="fa fa-check-square-o" ></i> Permitir al docente registrar sus notas por medio de las hojas de cálculo de Google Drive.</li>
+  <li><i class="fa fa-check-square-o" ></i> Crear un medio seguro y privado donde el estudiante permita visualizar sus notas.</li>
+  <li><i class="fa fa-check-square-o" ></i> Permite autenticar a los clientes por medio de la cuenta institucional
+-El sistema nunca podrà editar las notas, <strong>SÒLO ES UN MECANISMO DE PUBLICACIÓN.</strong></li>
   
 </ul> </div>
 
@@ -160,7 +164,7 @@
 
 <div class="content" align="center" >
   <div id="mexcel" class="col-md-4 col-sm-4 col-xs-12 " > <button class="btn btn-danger" onclick="mexcel()" > <i class="fa fa-book" > Guia formato Google Sheets  </i>   </button> </div>
-  <div href="videoprofe" id="vprofe" class="col-md-4 col-sm-4 col-xs-12 " > <button class="btn btn-danger" onclick="mvideo()" > <i class="fa fa-play" > Video Tutorial </i>  </button> </div>
+  <div href="videoprofe" id="vprofe" class="col-md-4 col-sm-4 col-xs-12 " > <button class="btn btn-danger" onclick="mvideo()" > <i class="fa fa-play" > Videos Tutoriales </i>  </button> </div>
   <div id="mprofe" class="col-md-4 col-sm-4 col-xs-12 " > <button class="btn btn-danger" onclick="mprofe()" > <i class="fa fa-book" > Guia Docente  </i></button> </div>
   
 </div>
@@ -179,10 +183,15 @@
      <a target="_blank" href="ManuaDocente-SITPRE.pdf" align="right"><i class="fa fa-external-link">ver PDF</i></a>
     <embed src="ManuaDocente-SITPRE.pdf" type="application/pdf" width="100%" height="600px" />
   </div>
-  <div id="videoprofe" class="content"  align="center"> <h3 align="center"> Video Tutorial </h3>
+  <div id="videoprofe" class="content"  align="center"> <h3 align="center"> Video Navega Por <strong>SITPRE</strong> </h3>
  <video style="height: 70%; width:60%;" controls>
       <source src="SITPRE_DOCENTE.mp4" type="video/mp4">
-    </video></div>
+    </video>
+    <h3 align="center"> Crear Google Sheets </h3>
+ <video style="height: 70%; width:60%;" controls>
+      <source src="formatoGoogleSheets.mp4" type="video/mp4">
+    </video>
+  </div>
   
   </div>
 

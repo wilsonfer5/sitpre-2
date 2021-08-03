@@ -34,7 +34,7 @@
     <div class="nav_menu">
       <nav>
         <div class="navbar nav_title" style="border: 0;">
-            <a  href="teacher">
+            <a  href="{{url('teacher')}}">
             <img src="../img/logo3.svg"  class="site_title">
             </a>
             </div>
@@ -47,7 +47,6 @@
               <span class=" fa fa-angle-down" style="color:white"></span>
             </a>
             <ul class="dropdown-menu dropdown-usermenu pull-right">
-              <li><a href="javascript:;">Help</a></li>
               <li><a href="{{ url('homew/google/logout') }}"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
             </ul>
           </li>
@@ -59,6 +58,13 @@
                 <li><a href="{{ url("listado_materias")}}">Administrar Materias </a></li>
                </ul>
             </li>
+            <li class="">
+                <a class=" dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ><i class="fa fa-thumbs-up "></i> Manuales <span class=" fa fa-angle-down" ></span></a>
+                <ul class="dropdown-menu  pull-right" >
+              <li><a target="_blank" href="{{url('ManuaDoc-google-sheets-SITPRE.pdf')}}"><i class="fa fa-file pull-right"></i>Crear Google Sheets </a></li>
+              <li><a target="_blank" href="{{url('ManuaDocente-SITPRE.pdf')}}"><i class="fa fa-file pull-right"></i>Guia Docente</a></li> <li><a target="_blank" href="https://docs.google.com/spreadsheets/d/15yoJh8hKivyu_mrB-fn90dd4J7z4gN02BZ9OcwXn0HI/edit?usp=sharing"><i class="fa fa-link pull-right"></i>Formato Goolge Sheets</a></li>
+               </ul>
+              </li>
         </ul>
       </nav>
     </div>
@@ -94,9 +100,9 @@
               <div class=" col-lg-2 col-md-6 col-sm-12" >
                <label data-toggle="tooltip" data-placement="top" title="Actividades de Tercera nota" >Item</label>
                <select class="form-control" id="itemMateria" name="itemMateria"> 
-                <option  size="50%" value=""> Mostrar Todo </option>
+                <option  size="50%" style="text-transform: uppercase;" value=""> Mostrar Todo </option>
                <@for($i= 4; $i<count($encabezado);$i++)
-                  <option size="100%" value="{{$i}}">{{$encabezado[$i]}}</option>
+                  <option size="100%" style="text-transform: uppercase;" value="{{$i}}">{{$encabezado[$i]}}</option>
                 @endfor
                </select>
               </div>
@@ -122,9 +128,9 @@
       <thead width="130px">
          <tr>
             @for ($i =0; $i<count($encabezado) ; $i++) 
-               <th style="text-align: center;" ><a>{{$encabezado[$i]}}</a></th>
+               <th style="text-align: center;text-transform: uppercase;" ><a>{{$encabezado[$i]}}</a></th>
              @endfor
-                <th style="text-align: center;" ><a>Acciones</a></th>
+                <th style="text-align: center;text-transform: uppercase;" ><a>Acciones</a></th>
          </tr>
        </thead>
       <tbody>  
@@ -201,6 +207,9 @@
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"  id="definitiva" ></div>
           <br>
           <div id="tabla" ></div>
+          <div id="descripcion" >
+            <div id="titulo"  ></div>
+          </div>
 
           <div class="col-md-12 col-sm-12 col-xs-12" >
               <div class="card">
@@ -296,6 +305,10 @@ console.log("inicio")
   var btnc2=document.getElementById("cerrar2");
   var myTable=document.getElementById("tabla");
   var grafico=document.getElementById("grafica");
+  var descrip =document.getElementById("descripcion");
+  
+
+
 
 
   var nomE = document.createElement("h3");
@@ -330,6 +343,15 @@ console.log("inicio")
  0].rows[0].cells[i].textContent)
  }
 //console.log(imp)
+//
+var obs= new Array();
+
+
+
+
+
+
+
 var bo=document.getElementsByTagName('tbody')[0].rows;
 var bo2=(document.getElementsByTagName('tbody')[0].rows[0].cells.length)-1;
 var imp2 = new Array(bo.length);
@@ -343,10 +365,12 @@ var imp2 = new Array(bo.length);
   }
   }
  }
+
+
   
 
     let table = document.createElement('table');
-    table.classList.add('table', 'table-striped', 'table-bordered', 'align-middle', 'display', 'nowrap', 'table-hover', 'responsive');
+    table.classList.add('table', 'table-striped', 'table-bordered', 'align-middle','responsive');
     let headerRow = document.createElement('tr');
  
     imp.forEach(headerText => {
@@ -383,6 +407,24 @@ var imp2 = new Array(bo.length);
  
     myTable.appendChild(table);
 
+
+for (var i = 0; i < imp.length; i++) {
+var titulo =document.getElementById("titulo");
+<?php  foreach($observaciones as $obs){?>   
+var til=document.createElement('h5');
+    var no= (<?php echo (json_encode($obs))?>);
+    var a=no.split(':');
+    if(String(a[0].toLowerCase().trim())== String(imp[i].toLowerCase().trim())){
+    til.innerHTML=a[0]+':'+a[1];
+    til.setAttribute('align','justify');
+    titulo.appendChild(til);
+    descrip.appendChild(titulo); 
+    }
+    <?php  }?>
+}
+    
+
+
 // grafico
 
 
@@ -400,8 +442,10 @@ close();
 
 function close(){
 body1.removeChild(nomE);
-//body2.removeChild(notadef)
-//body2.removeChild(def)
+while(titulo.firstChild){
+titulo.removeChild(titulo.firstChild);
+}
+//descrip.removeChild(titulo);
 myTable.removeChild(table);
 
 }
@@ -417,7 +461,7 @@ myTable.removeChild(table);
     /* Custom filtering function which will search data in column four between two values */
     $.fn.dataTable.ext.search.push(
         function( settings, data, dataIndex ) {
-          console.log('entro a funtion')
+          
             var min = parseFloat( $('#min').val(), 0);
             var max = parseFloat( $('#max').val(), 0 );
             var e = document.getElementById("itemMateria");
@@ -442,8 +486,8 @@ myTable.removeChild(table);
      console.log("tamaño de la tabla"+lastIndex);
     $(document).ready(function() {
         var table = $('#tabla_de_miembros').DataTable({
+           dom: '<"dt-top-container"<l><"dt-center-in-div"B><f>r>t<"dt-filter-spacer"f><ip>',
           info:false,
-          dom: 'Bfrtip',
     buttons: [
     {
     extend: 'pdf',

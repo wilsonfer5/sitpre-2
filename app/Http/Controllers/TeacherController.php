@@ -50,71 +50,80 @@ class TeacherController extends Controller {
     
     //Editar materia
     //editar una materia
-    public function editar_materia(Request $request){
+    public function editar_materia(Request $request){  
         $id_subject=$request->input('id_materia');
+        $tipomateria=$request->input('tipo');
+
         $codigo=$request->input('code').'-'.$request->input('group');
         $materia=Subject::find($id_subject);
-        $existingCode = Subject::where('code',$codigo )->first();
+
+        $existingCode = Subject::where('code',$codigo)->where('type','=',$tipomateria)->first();
         $existingUrl = Subject::where('url_drive', $request->input('url_drive'))->first();
 
-        if($materia->code!=$codigo){
+        if($materia->code!=$codigo || $materia->type!=$tipomateria){   
             if($existingCode){
-                $request->session()->flash('alert-danger', 'Error: Ya existe una materia con el siguiente codigo '.$codigo.' !!');
+                $request->session()->flash('alert-danger', 'Error: Ya existe una materia con el siguiente codigo '.$codigo.' y con el tipo '.$tipomateria.'!!');
                 return   redirect()->to('/listado_materias');
-            }
+            } 
          }
+            
 
          if($materia->url_drive!=$request->input('url_drive')){
             if($existingUrl){
-                $request->session()->flash('alert-danger', 'Error: Ya existe una materia con el siguiente url'.$request->input('url_drive').' !!');
+                $request->session()->flash('alert-danger', 'Error: Ya existe una materia con el siguiente url = '.$request->input('url_drive').' !!');
                 return   redirect()->to('/listado_materias');
             }
          }
 
         $materia->name=$request->input('name');
         $materia->code=$request->input('code').'-'.$request->input('group');
+        $materia->type=$request->input('tipo');
         $materia->url_drive=$request->input('url_drive');
-
-
         //Si retorna en 1 quiere decir que la url no coincide con la necesaria
-       
        if($this->validar_estructura($request->input('url_drive'))){
-            if($materia->save()) {
+        if($materia->save()){
          $request->session()->flash('alert-info', 'Actualización exitosa!!');
          return   redirect()->to('/listado_materias');
-        } else{
+        }else{
          return redirect()->to('/listado_materias');
         }
          }else{
         $request->session()->flash('alert-danger', 'Error: El archivo no concuerda con la estructura establecida');
         return redirect()->to('/listado_materias');
         }
-
     }
-
 
 
      //Crear materia
      //crear una materia
     public function crear_materia(Request $request){
         $codigo=$request->input('code').'-'.$request->input('group');
-        $existingSubject = Subject::where('code', $codigo)->first();
+        $existingSubject = Subject::where('code', $codigo)->where('type','=',$request->input('tipo'))->first();
         $existingUrl=Subject::where('url_drive', $request->input('url_drive'))->first();
+
+       //var_dump($existingSubject->all());
+
        if($existingSubject){
-            $request->session()->flash('alert-danger', 'Error: Materia con codigo '.$codigo.' ya existe!!');
+       var_dump('entro al if primero');
+
+            $request->session()->flash('alert-danger', 'Error: Materia con codigo '.$codigo.' y tipo '.$request->input('tipo').' ya existe!!');
             return redirect()->to('/listado_materias');
         }
         if($existingUrl){
+       var_dump('entro al if de url');
+
             $request->session()->flash('alert-danger', 'Error: Url drive '.$request->input('url_drive').' ya existe!!');
             return redirect()->to('/listado_materias');
         }
 
         
         if($this->validar_estructura($request->input('url_drive'))){
+       var_dump('entro al if validar estructura');
        
         $newSubject                  = new Subject;
         $newSubject->name            = $request->input('name');
         $newSubject->code            = $request->input('code').'-'.$request->input('group');
+        $newSubject->type            = $request->input('tipo');
         $newSubject->url_drive       = $request->input('url_drive');
         $newSubject->user_id         = auth()->user()->id;
         if($newSubject->save()){
@@ -351,7 +360,7 @@ class TeacherController extends Controller {
         $observaciones=$this->obtener_observaciones($materia);
         if($listado2&&$encabezado&&$observaciones){
          //$listado =Subject::orderBy('name', 'ASC')->get();
-        return view('Teacher.detalles', ['observaciones'=>$observaciones,'nombre_materia'=>$materia->name.'-'.$grupo[1]],['listado2' => $listado2,'encabezado'=>$encabezado]);
+        return view('Teacher.detalles', ['observaciones'=>$observaciones,'nombre_materia'=>$materia->name.'-'.$grupo[1].'-'.$materia->type],['listado2' => $listado2,'encabezado'=>$encabezado]);
         }
         
         if($listado2==0){

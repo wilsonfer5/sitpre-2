@@ -24,6 +24,8 @@
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
     <style type="text/css">
       table th {
   text-align: center;
@@ -41,14 +43,14 @@ table td {
         <div class="top_nav">
           <div class="nav_menu">
             <nav>
-              <div class="left_col scroll-view">
+              <div class=" ">
             <div class="navbar nav_title" style="border: 0;">
-            <a  href="student">
+            <a  href="{{url('student')}}">
             <img src="../img/logo3.svg"  class="site_title">
             </a>
             </div>
 
-              <ul class="nav navbar-nav navbar-right">
+              <ul class="nav navbar-nav ">
                 <li class="" >
                   <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" 
                   style="color:white;">
@@ -56,7 +58,7 @@ table td {
                     <span class=" fa fa-angle-down" style="color:white"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                   <li><a target="_blank" href="ManuaEstudiante-SITPRE.pdf">
+                   <li><a target="_blank" href="{{url('ManuaEstudiante-SITPRE.pdf')}}">
                       <i class="fa fa-book pull-right"></i> Manual</a></li>
                     <li><a href="{{ url('homew/google/logout') }}"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
                   </ul>
@@ -67,6 +69,8 @@ table td {
           </div>
         </div>
         <!-- /top navigation -->
+
+
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -98,8 +102,8 @@ table td {
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                  
-                <h1 align="center">{{$nombre_materia}}</h1>
-                <h2 align="center"><strong>Prof.</strong> {{$nombre_docente}}</h2>
+                <h1 align="center" style=" text-transform: uppercase;">{{$nombre_materia}}</h1>
+                <h2 align="center" style=" text-transform: capitalize;"><strong>Prof.</strong> {{$nombre_docente}}</h2>
               
 
            
@@ -108,13 +112,13 @@ table td {
 
                     <br>
                   <!-- inicio tavbla Notas -->
-                  <div class="x_content table-responsive">
+                  <div class="x_content ">
                  
-                    <table id="tabla_de_miembros"  class="table table-striped table-bordered table align-middle table table-hover " style="width:50%" align="center">
+                    <table id="tabla_de_miembros" class="table table-striped table-bordered table-hover responsive" style="width:50%" align="center">
                         <thead width="130px">
-                      <th style="text-align: center;" ><a>ITEM</a></th>
+                      <!--th style="text-align: center;" ><a>ITEM</a></th>
                       <th align="center"><a>NOTA</a></th>
-                      <th align="center"><a>ACCIONES</a></th>
+                      <th align="center"><a>ACCIONES</a></th-->
                    @for ($i =4; $i<count($encabezado); $i++)
                     
                     </thead>
@@ -125,7 +129,7 @@ table td {
                           <td>
                         @foreach($observaciones as $fila)
                         @if(!empty($encabezado[$i])&&stristr($fila,$encabezado[$i])==$fila)
-                            <strong class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="{{$fila}}">
+                            <strong class="btn btn-secondary" style=" text-transform: uppercase;" data-toggle="tooltip" data-placement="left" title="{{strtoupper($fila)}}">
                             <i class="fa fa-check" ></i> {{$encabezado[$i]}}</strong>
                           @endif
                           @endforeach
@@ -149,11 +153,11 @@ table td {
                       @endif 
                    @endif 
                       <td>
-                        <button class="btn btn-xs btn-danger" style="width: 30%" data-toggle="modal" data-placement="right" title="Realiza un comentario sobre la nota obsevada." data-placement="top" data-item="{{$encabezado[$i]}}" data-nota= "{{ $fila[$encabezado[$i]]  }}" data-mate="{{$nombre_materia}}" data-emailpro="{{$email_docente}}"data-profe="{{$nombre_docente}}" data-username="{{ auth()->user()->name }}"  data-useremail="{{ auth()->user()->email}}" data-userurl="{{request()->url()}}" title="Editar Materia" data-target="#comentario">
-                       <i class="fa fa-location-arrow" aria-hidden="true"> Comentario </i></button>
+                        <button class="btn btn-xs btn-danger responsive"  data-toggle="modal" data-placement="right" title="Realiza un comentario sobre la nota obsevada." data-placement="top" data-item="{{$encabezado[$i]}}" data-nota= "{{ $fila[$encabezado[$i]]  }}" data-mate="{{$nombre_materia}}" data-emailpro="{{$email_docente}}"data-profe="{{$nombre_docente}}" data-username="{{ auth()->user()->name }}"  data-useremail="{{ auth()->user()->email}}" data-userurl="{{request()->url()}}" title="Editar Materia" data-target="#comentario">
+                       <i class="fa fa-location-arrow" aria-hidden="true"> </i>Comentaio</button>
                        
-                       <button class="btn btn-xs btn-danger"  style="width: 30%" data-toggle="modal" data-placement="right" title="ver Detalles" data-placement="top"  title="Detalle Nota" data-itemd="{{$encabezado[$i]}}" data-notad="{{$fila[$encabezado[$i]]}}"  data-target="#detallenota">
-                       <i class="fa fa-eye" aria-hidden="true"> Detalle </i></button>
+                       <button class="btn btn-xs btn-danger responsive"   data-toggle="modal" data-placement="right" title="ver Detalles" data-placement="top"  title="Detalle Nota" data-itemd="{{$encabezado[$i]}}" data-notad="{{$fila[$encabezado[$i]]}}"  data-target="#detallenota">
+                       <i class="fa fa-eye" aria-hidden="true"> Detalle  </i></button>
 
                     </td> 
                 @endforeach 
@@ -162,20 +166,20 @@ table td {
                 </tbody>
 
                     </table>
-                  <div class="container-fluid">
+                  <div class="container-fluid ">
                     <div align="center">
                       <button id="gaficar" style="height: 30px;" onclick="mostrarfrafica()" class="btn btn-xs btn-danger"  > <i class="fa  fa-bar-chart-o " > Graficar Notas </i> </button>
                     </div>
                   </div> 
 
-                  <div class="container-fluid">
+                  <div class="container-fluid responsive">
                      <div class="container">
-            <div class="row responsive">             
+            <div class="">             
 
-                <div id="migrafica" class="col-md-12 col-sm-12 col-xs-12" >
+                <div id="migrafica" class="col-md-12 col-sm-12 col-xs-12 " >
                         <div class="card" align="center">
                             <div class="card-body" style="height:80% ; width: 60%;">
-                                <canvas id="singelBarChart" ></canvas>
+                                <canvas id="singelBarChart" class="responsive"></canvas>
                             </div>
                         </div>
                     </div><!-- /# column -->
@@ -287,9 +291,6 @@ table td {
 </div>
             <!--------------------------------->
 
-
-
-
            </div>
         </div>
         <!-- /page content -->
@@ -318,6 +319,28 @@ table td {
     
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+
+<!-- Datatables -->
+    <script src="../vendors/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+
+
+
+
 
 <script>
 var x = document.getElementById("migrafica");
@@ -453,6 +476,7 @@ color[<?php echo($in) ?>]="#3FA435";
 
 
   var itemn = document.createElement("h3");
+  itemn.setAttribute('style','text-transform:uppercase;');
   itemn.innerHTML = itemnota;
   body1.appendChild(itemn);
 //console.log("con ,"+(not>= '3' && not<'4,5'))
@@ -471,12 +495,12 @@ var nota = document.createElement("h3");
  var no="";
  var obsnotsm=document.createElement('p');
  obsnotsm.setAttribute('align','justify'); 
- obsnotsm.setAttribute('style','font-size:150%;');
-
+ obsnotsm.setAttribute('style','font-size:150%; text-transform:capitalize;');
  <?php foreach($observaciones as $obs){?>
     no= (<?php echo (json_encode($obs))?>);
     if(no.includes(itemnota)){
      var a=no.split(':');
+
     obsnotsm.innerHTML=a[1];
     }<?php  }?>
 

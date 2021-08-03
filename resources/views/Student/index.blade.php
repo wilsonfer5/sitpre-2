@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   <title>SITPRE - Manejo de terceros previos</title>
+   <title>SITPRE - Manejo de notas</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,16 +26,18 @@
   <body class="nav-md">
 
         <!-- top navigation -->
-        <div class="profile clearfix" >
+        
+          <div class="top_nav">
           <div class="nav_menu">
             <nav>
-              <div class="navbar nav_title" style="border: 0;">
-            <a  href="student">
+              <div class="">
+            <div class="navbar nav_title" style="border: 0;">
+            <a  href="{{url('student')}}">
             <img src="img/logo3.svg"  class="site_title">
             </a>
             </div>
 
-              <ul class="nav navbar-nav navbar-right">
+              <ul class="nav navbar-nav ">
                 <li class="" >
                   <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" 
                   style="color:white;">
@@ -43,7 +45,7 @@
                     <span class=" fa fa-angle-down" style="color:white"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a target="_blank" href="ManuaEstudiante-SITPRE.pdf">
+                   <li><a target="_blank" href="{{url('ManuaEstudiante-SITPRE.pdf')}}">
                       <i class="fa fa-book pull-right"></i> Manual</a></li>
                     <li><a href="{{ url('homew/google/logout') }}"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
                   </ul>
@@ -53,6 +55,7 @@
             </nav>
           </div>
         </div>
+       
         <!-- /top navigation -->
 
 
@@ -77,7 +80,7 @@
                   <div class="x_title">
 
                 
-                    <h3 align="center" ><strong> SITPRE - </strong>Sistema de información para el manejo de terceros previos -
+                    <h3 align="center" ><strong> SITPRE - </strong>Sistema de información para el manejo de notas -
                     </h3>
                    
                     
@@ -91,25 +94,60 @@
                </div>
              <!-------------------------------------------->
                    
+<div class="x_content" >
+  <h3>Materias Favoritas</h3>
+  <table id="tabla_de_miembros2" class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th style="text-transform: uppercase;" >Codigo</th>
+        <th style="text-transform: uppercase;" >Nombre</th>
+        <th style="text-transform: uppercase;" >Tipo</th>
+        <th style="text-transform: uppercase;" >Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      @foreach($favoritas as $fav)
+      <td style=" text-transform: uppercase;" >{{$fav->code}}</td>
+      <td style=" text-transform: uppercase;" >{{$fav->name}}</td>
+      <td style=" text-transform: uppercase;" >{{$fav->type}}</td>
+      <td><a href="{{url("nota_materia/$fav->id")}}" class="btn btn-xs btn-danger fa fa-eye" data-toggle="tooltip" data-placement="top" title="Ver Detalle"></a>
+      <a href="{{url("eliminar_favorita/$fav->id")}}" class="btn btn-xs btn-danger fa fa-trash-o" data-toggle="tooltip" data-placement="top" title="Quitar de Favoritas" ></a></td>
+
+               </tr>
+      @endforeach
+    </tbody>
+  </table>
+
+
+
+</div>
+<div class="clearfix"></div>
+
 
   <!-- tabla lista de materias --> 
            <div class="x_content">
+            <h3>Materias</h3>
              <table id="tabla_de_miembros" class="table table-striped table-bordered">
                <thead>
                  <tr>
-                   <th>Codigo</th>
-                   <th>Nombre</th>
+                   <th style="text-transform: uppercase;" >Codigo</th>
+                   <th style="text-transform: uppercase;" >Nombre</th>
+                   <th style="text-transform: uppercase;" >Tipo</th>
                    <!--th>Docente</th-->
-                   <th>Acción</th>
+                   <th style="text-transform: uppercase;" >Acción</th>
                  </tr>
              </thead>
              <tbody>
                @foreach ($listado as $fila)
                <tr>
                 <td>{{$fila->code}}</td>
-                <td>{{$fila->name}}</td>
+                <td style=" text-transform: uppercase;">{{$fila->name}}</td>
+                <td style=" text-transform: uppercase;">{{$fila->type}}</td>
                 <!--td>{{$fila->user_id}}</td-->
-                <td><a href="{{url("nota_materia/$fila->id")}}" class="btn btn-xs btn-danger fa fa-eye" data-toggle="tooltip" data-placement="top" title="Ver Detalle"></a></td>
+                <td><a href="{{url("nota_materia/$fila->id")}}" class="btn btn-xs btn-danger fa fa-eye" data-toggle="tooltip" data-placement="top" title="Ver Detalle"></a>
+                <a href="{{url("agregar_favorita/$fila->id")}}" class="btn btn-xs btn-danger fa fa-star-o" data-toggle="tooltip" data-placement="top" title="Agregar a Favoritas" ></a></td>
+
                </tr>
                @endforeach
              </tbody>
@@ -239,7 +277,36 @@
         "lengthMenu": "Paginación _MENU_ ",
         "loadingRecords": "Cargando...",
         "processing": "Procesando...",
-        "search": "Buscar:",
+        "search": "Buscar: ",
+        "zeroRecords": "No se encontraron resultados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+        
+        }
+
+    });
+
+    $('div.flash-message').delay(8000).slideUp(300);
+  </script>
+  <script language="javascript">
+    $('#tabla_de_miembros2').DataTable({
+      info:false,
+      language: {
+        "decimal": "",
+        "emptyTable": "No hay información para mostrar",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Paginación _MENU_ ",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar: ",
         "zeroRecords": "No se encontraron resultados",
         "paginate": {
             "first": "Primero",

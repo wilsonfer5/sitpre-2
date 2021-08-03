@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   <title>SITPRE - Manejo de terceros previos</title>
+   <title>SITPRE - Manejo de terceros notas</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
           <div class="nav_menu">
             <nav>
               <div class="navbar nav_title" style="border: 0;">
-            <a  href="teacher">
+            <a  href="{{url('teacher')}}">
             <img src="img/logo3.svg"  class="site_title">
             </a>
             </div>
@@ -53,7 +53,6 @@
                     <span class=" fa fa-angle-down" style="color:white"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">Help</a></li>
                     <li><a href="{{ url('homew/google/logout') }}"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
                   </ul>
                 </li>
@@ -66,6 +65,13 @@
                       <li><a href="{{ url("listado_materias")}}">Administrar Materias </a></li>
                      </ul>
                   </li>
+                  <li class="">
+                <a class=" dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ><i class="fa fa-thumbs-up "></i> Manuales <span class=" fa fa-angle-down" ></span></a>
+                <ul class="dropdown-menu  pull-right" >
+              <li><a target="_blank" href="{{url('ManuaDoc-google-sheets-SITPRE.pdf')}}"><i class="fa fa-file pull-right"></i>Crear Google Sheets </a></li>
+              <li><a target="_blank" href="{{url('ManuaDocente-SITPRE.pdf')}}"><i class="fa fa-file pull-right"></i>Guia Docente</a></li><li><a target="_blank" href="https://docs.google.com/spreadsheets/d/15yoJh8hKivyu_mrB-fn90dd4J7z4gN02BZ9OcwXn0HI/edit?usp=sharing"><i class="fa fa-link pull-right"></i>Formato Goolge Sheets</a></li> 
+               </ul>
+              </li>
               </ul>
             </nav>
           </div>
@@ -143,6 +149,16 @@
               <option>Z</option>
               </select>
 	        	</div>
+             <div class="form-group">
+              <label for="group"> Tipo</label>
+              <select class="form-control" name="tipo" id="tipo" required>
+                <option>Previo 1</option>
+                <option>Previo 2</option>
+                <option>Tercera Nota</option>
+                <option>Examen Final</option>
+              </select>
+              
+            </div>
             <div class="form-group">
 		        	<label for="name">Url Drive*</label>
               <input type="text" class="form-control" name="url_drive" id="url_drive"  required>
@@ -218,6 +234,16 @@
               </select>
 	        	</div>
             <div class="form-group">
+              <label for="group"> Tipo</label>
+              <select class="form-control" name="tipo" id="tipo" required>
+                <option>Previo 1</option>
+                <option>Previo 2</option>
+                <option>Tercera Nota</option>
+                <option>Examen Final</option>
+              </select>
+              
+            </div>
+            <div class="form-group">
 		        	<label for="name">Url Drive*</label>
               <input type="text" class="form-control" name="url_drive" id="url_drive"  required>
 	        	</div>
@@ -282,6 +308,90 @@
 </div>
             <!--------------------------------->
 
+<!----------Modal para crear las materias-------------->
+         
+
+
+<div class="modal fade" id="create2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Agregar Tipo Nota</h4>
+      </div>
+       <form action="{{ url('crear_materia') }}"  method="post" id="f_editar_usuario"  class="formentrada"  >
+                
+        <div class="modal-body">
+        <div class="form-group">
+              <label for="name">Nombre Materia*</label>
+               <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> 
+                <input type="hidden" name="id_subjects" id="id_subjects" readonly> 
+              <input type="text" class="form-control" name="name" id="name"  required readonly>
+            </div>
+          <div class="form-group">
+              <label for="code">Codigo Materia*</label>
+              <input type="number" class="form-control" name="code" id="code" required readonly>
+              
+            </div>
+            <div class="form-group">
+              <label for="group">Grupo Materia*</label>
+              <select class="form-control" name="group" id="group" required readonly >
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>E</option>
+              <option>F</option>
+              <option>G</option>
+              <option>H</option>
+              <option>I</option>
+              <option>J</option>
+              <option>K</option>
+              <option>L</option>
+              <option>M</option>
+              <option>N</option>
+              <option>Ñ</option>
+              <option>O</option>
+              <option>P</option>
+              <option>Q</option>
+              <option>R</option>
+              <option>S</option>
+              <option>T</option>
+              <option>U</option>
+              <option>V</option>
+              <option>W</option>
+              <option>X</option>
+              <option>Y</option>
+              <option>Z</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="group"> Tipo</label>
+              <select class="form-control" name="tipo" id="tipo" required>
+                <option>Previo 1</option>
+                <option>Previo 2</option>
+                <option>Tercera Nota</option>
+                <option>Examen Final</option>
+              </select>
+              
+            </div>
+            <div class="form-group">
+              <label for="name">Url Drive*</label>
+              <input type="text" class="form-control" name="url_drive" id="url_drive"  required>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger">Guardar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+            <!--------------------------------->
+
+
             <!--------------------------------->
 
 
@@ -309,10 +419,11 @@
                       <thead>
                         <tr>
                           <!--th><a > Id</a>  </th-->
-                          <th><a> Codigo Materia</a> </th>
-		                      <th><a> Nombre</a> </th>
-                          <th><a> Url Drive</a> </th>
-                           <th><a>Accion</a></th>
+                          <th style="text-transform: uppercase;"><a> Codigo Materia</a> </th>
+		                      <th style="text-transform: uppercase;"><a> Nombre</a> </th>
+                           <th style="text-transform: uppercase;"><a> Tipo</a> </th>
+                          <th style="text-transform: uppercase;"><a> Url Drive</a> </th>
+                           <th style="text-transform: uppercase;"><a>Accion</a></th>
 		                    </tr>
                       </thead>
 
@@ -323,11 +434,13 @@
                 <tr>
                        <!--td>{{ $fila->id  }}</td-->
                        <td>{{ $fila->code }}</td>
-                       <td>{{ $fila->name }}</td>
+                       <td style="text-transform: uppercase;" >{{ $fila->name }}</td>
+                       <td style="text-transform: uppercase;" >{{ $fila->type }}</td>
                        <td><a href="{{ $fila->url_drive }}" target="_blank">URL</a></td>
                        <td> 
                         <!-- Editar -->
-                        <button class="btn btn-xs btn-danger"  data-placement="top" title="Editar Materia" data-name="{{$fila->name}}" data-code="{{$fila->code}}"data-url_drive="{{$fila->url_drive}}" data-id_materia="{{$fila->id}}" data-toggle="modal" data-target="#edit">
+                        <button class="btn btn-xs btn-danger"  data-placement="top" title="Editar Materia" data-name="{{$fila->name}}" data-code="{{$fila->code}}"data-url_drive="{{$fila->url_drive}}" data-tipo='{{$fila->type}}'
+                          data-id_materia="{{$fila->id}}" data-toggle="modal" data-target="#edit">
                        <i class="fa fa-edit" aria-hidden="true"></i>
                        </button>
                         <!-- detalles -->
@@ -344,6 +457,9 @@
                         data-murl="{{$fila->url_drive}}"data-codigo="{{ $fila->code }}" data-nomm="{{ $fila->name }}">
                        <i class="fa fa-mail-reply-all" aria-hidden="true"></i>
                        </a>
+                       <button class="btn btn-xs btn-danger"  data-placement="top" title="Agregar Tipo Nota" data-name="{{$fila->name}}" data-code="{{$fila->code}}"data-id_materia="{{$fila->id}}" data-toggle="modal" data-target="#create2">
+                       <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                       </button>
                 </tr>
                 @endforeach
             </tbody>
@@ -412,7 +528,7 @@
         "lengthMenu": "Paginación _MENU_ ",
         "loadingRecords": "Cargando...",
         "processing": "Procesando...",
-        "search": "Buscar:",
+        "search": "Buscar Materia:",
         "zeroRecords": "No se encontraron resultados",
         "paginate": {
             "first": "Primero",
@@ -435,7 +551,9 @@
     var button = $(event.relatedTarget) 
       var name = button.data('name') 
       var code = button.data('code') 
-      var id_subjects = button.data('id_materia') 
+      var id_subjects = button.data('id_materia')
+      var tipo = button.data('tipo')
+
       var url_drive = button.data('url_drive') 
       var group=button.data('group')
       
@@ -446,7 +564,31 @@
       modal.find('.modal-body #name').val(name);
       modal.find('.modal-body #code').val(grupo[0]);
       modal.find('.modal-body #group').val(grupo[1]);
+      modal.find('.modal-body #tipo').val(tipo);
       modal.find('.modal-body #url_drive').val(url_drive);
+      modal.find('.modal-body #id_materia').val(id_subjects);
+})
+
+ 
+</script>
+
+<script>
+  
+  $('#create2').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+      var name = button.data('name') 
+      var code = button.data('code') 
+      var id_subjects = button.data('id_materia')
+
+      var group=button.data('group')
+      
+      var grupo = code.split('-');
+      
+        
+      var modal = $(this)
+      modal.find('.modal-body #name').val(name);
+      modal.find('.modal-body #code').val(grupo[0]);
+      modal.find('.modal-body #group').val(grupo[1]);
       modal.find('.modal-body #id_materia').val(id_subjects);
 })
 

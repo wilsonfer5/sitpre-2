@@ -32,7 +32,7 @@
      <br>
      <br>
      <ul>
-     <li><a href="http://notas.madarme.co/sitpre_nuevo/public_html/">Ingresa a la SITPRE<a> y revisa tus calificaciones. </li>
+     <li><a href="http://notas.madarme.co/sitpre_nuevo/public_html/">Ingresa a SITPRE<a> y revisa tus calificaciones. </li>
      </li>
      </ul>
      <br><br>
